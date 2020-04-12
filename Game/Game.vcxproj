@@ -175,11 +175,6 @@
     <ClCompile Include="Engine Source Code\Source Files\Transform.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Vector2.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Vector3.cpp" />
-    <ClCompile Include="Game Source Code\Source Files\Brick.cpp" />
-    <ClCompile Include="Game Source Code\Source Files\Coin.cpp" />
-    <ClCompile Include="Game Source Code\Source Files\Goomba.cpp" />
-    <ClCompile Include="Game Source Code\Source Files\Mushroom.cpp" />
-    <ClCompile Include="Game Source Code\Source Files\PlayerController.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -209,11 +204,6 @@
     <ClInclude Include="Engine Source Code\Header Files\Transform.h" />
     <ClInclude Include="Engine Source Code\Header Files\Vector2.h" />
     <ClInclude Include="Engine Source Code\Header Files\Vector3.h" />
-    <ClInclude Include="Game Source Code\Header Files\Brick.h" />
-    <ClInclude Include="Game Source Code\Header Files\Coin.h" />
-    <ClInclude Include="Game Source Code\Header Files\Goomba.h" />
-    <ClInclude Include="Game Source Code\Header Files\Mushroom.h" />
-    <ClInclude Include="Game Source Code\Header Files\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Program Files (x86)\DirectXTK-master\Audio\DirectXTKAudio_Desktop_2019_Win8.vcxproj">

@@ -3,12 +3,6 @@
 #include "Animator.h"
 #include "Particle.h"
 
-#include "PlayerController.h"
-#include "Brick.h"
-#include "Coin.h"
-#include "Mushroom.h"
-#include "Goomba.h"
-
 #include <fstream>
 #include <iostream>
 
@@ -159,11 +153,6 @@ Entity& ECS::AddEntity(const char* path)
 			else if (str.find(Particle::componentName) != string::npos && Particle::TryParse(str, entity)) {}
 			else if (str.find(AudioListener::componentName) != string::npos && AudioListener::TryParse(str, entity)) {}
 			else if (str.find(AudioSource::componentName) != string::npos && AudioSource::TryParse(str, entity)) {}
-			else if (str.find(PlayerController::componentName) != string::npos && PlayerController::TryParse(str, entity)) {}
-			else if (str.find(Brick::componentName) != string::npos && Brick::TryParse(str, entity)) {}
-			else if (str.find(Coin::componentName) != string::npos && Coin::TryParse(str, entity)) {}
-			else if (str.find(Mushroom::componentName) != string::npos && Mushroom::TryParse(str, entity)) {}
-			else if (str.find(Goomba::componentName) != string::npos && Goomba::TryParse(str, entity)) {}
 		}
 
 		entities.emplace_back(std::move(entity));

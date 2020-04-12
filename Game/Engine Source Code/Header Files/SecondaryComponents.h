@@ -7,10 +7,4 @@
 #include "Camera.h"
 #include "Particle.h"
 
-#include "PlayerController.h"
-#include "Brick.h"
-#include "Coin.h"
-#include "Mushroom.h"
-#include "Goomba.h"
-
 #endif
