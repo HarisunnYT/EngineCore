@@ -1,0 +1,19 @@
+{
+    "value0": "transform",
+    "value1": "(500.000000,200.000000,5.000000)",
+    "value2": "(0.400000,0.400000)"
+}
+{
+    "value0": "particle",
+    "value1": "Assets/coin.png",
+    "value2": "(2.000000,2.000000)",
+    "value3": "(161.000000,163.000000)",
+    "value4": 100,
+    "value5": 0
+}
+{
+    "value0": "coin"
+}
+{
+    "value0": "audiosource"
+}

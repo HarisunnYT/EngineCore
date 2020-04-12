@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{558B3B6B-E768-4463-8549-EFBF5ABC24CD}</ProjectGuid>
+    <RootNamespace>Game</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>EngineCore</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Program Files %28x86%29\DirectXTK-master\Inc;$(SolutionDir)\Game;$(SolutionDir)\Game\Game Source Code\Header Files;$(SolutionDir)\Game\Engine Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Program Files %28x86%29\DirectXTK-master\Inc;$(SolutionDir)\Game;$(SolutionDir)\Game\Game Source Code\Header Files;$(SolutionDir)\Game\Engine Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;$(IncludePath)</IncludePath>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x86;C:\dev\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2x86.lib;SDL2_imagex86.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;$(SolutionDir)\Game;$(SolutionDir)\Engine Source Code\Header Files;$(SolutionDir)\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x64;C:\dev\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x86;C:\dev\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2x86.lib;SDL2_imagex86.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;$(SolutionDir)\Game;$(SolutionDir)\Game\Engine Source Code\Header Files;$(SolutionDir)\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x64;C:\dev\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AssemblyDebug>true</AssemblyDebug>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine Source Code\Source Files\Animator.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\AudioListener.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\AudioSource.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Camera.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Collider.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Collision.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\ECS.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\EngineCore.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Entity.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Game.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Hit.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\InputSystem.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Particle.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Physics.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Point.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Rigidbody.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\SpriteRenderer.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\TextureManager.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Tile.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\TileMap.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Transform.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Vector2.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Vector3.cpp" />
+    <ClCompile Include="Game Source Code\Source Files\Brick.cpp" />
+    <ClCompile Include="Game Source Code\Source Files\Coin.cpp" />
+    <ClCompile Include="Game Source Code\Source Files\Goomba.cpp" />
+    <ClCompile Include="Game Source Code\Source Files\Mushroom.cpp" />
+    <ClCompile Include="Game Source Code\Source Files\PlayerController.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine Source Code\Header Files\Animator.h" />
+    <ClInclude Include="Engine Source Code\Header Files\AudioListener.h" />
+    <ClInclude Include="Engine Source Code\Header Files\AudioSource.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Camera.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Collider.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Collision.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Component.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Components.h" />
+    <ClInclude Include="Engine Source Code\Header Files\ECS.h" />
+    <ClInclude Include="Engine Source Code\Header Files\EngineCore.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Entity.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Game.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Hit.h" />
+    <ClInclude Include="Engine Source Code\Header Files\InputSystem.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Particle.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Physics.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Point.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Rigidbody.h" />
+    <ClInclude Include="Engine Source Code\Header Files\SecondaryComponents.h" />
+    <ClInclude Include="Engine Source Code\Header Files\SpriteRenderer.h" />
+    <ClInclude Include="Engine Source Code\Header Files\TextureManager.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Tile.h" />
+    <ClInclude Include="Engine Source Code\Header Files\TileMap.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Transform.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Vector2.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Vector3.h" />
+    <ClInclude Include="Game Source Code\Header Files\Brick.h" />
+    <ClInclude Include="Game Source Code\Header Files\Coin.h" />
+    <ClInclude Include="Game Source Code\Header Files\Goomba.h" />
+    <ClInclude Include="Game Source Code\Header Files\Mushroom.h" />
+    <ClInclude Include="Game Source Code\Header Files\PlayerController.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Program Files (x86)\DirectXTK-master\Audio\DirectXTKAudio_Desktop_2019_Win8.vcxproj">
+      <Project>{4f150a30-cecb-49d1-8283-6a3f57438cf5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
