@@ -7,6 +7,7 @@
 
 #include <Windows.h>
 #include <d3d11_4.h>
+#include <wrl.h>
 
 class Graphics
 {
@@ -17,6 +18,7 @@ public:
 	Graphics& operator=(const Graphics&) = delete;
 	~Graphics();
 
+	void EndFrame();
 	void DrawTestTriangle();
 
 private:
@@ -26,7 +28,7 @@ private:
 	IDXGISwapChain* pSwap = nullptr;
 	ID3D11Device* pDevice = nullptr;
 	ID3D11DeviceContext* pContext = nullptr;
-
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget;
 };
 
 #endif

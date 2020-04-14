@@ -98,7 +98,7 @@ void EngineCore::Update()
 
 void EngineCore::Render()
 {
-	SDL_RenderClear(Renderer);
+	//SDL_RenderClear(Renderer);
 
 	game->Render();
 	Ecs->Draw();
@@ -106,8 +106,9 @@ void EngineCore::Render()
 	Collision::DebugDraw();
 
 	graphics->DrawTestTriangle();
+	graphics->EndFrame();
 
-	SDL_RenderPresent(Renderer);
+	//SDL_RenderPresent(Renderer);
 }
 
 void EngineCore::Clean()

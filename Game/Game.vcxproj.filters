@@ -205,5 +205,8 @@
     <FxCompile Include="Engine Source Code\Shaders\VertexShader.hlsl">
       <Filter>Header Files\Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="Engine Source Code\Shaders\PixelShader.hlsl">
+      <Filter>Header Files\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
