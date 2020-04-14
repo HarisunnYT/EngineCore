@@ -37,6 +37,9 @@
     <Filter Include="Header Files\Game\Components">
       <UniqueIdentifier>{c0acd4b9-1900-4255-9b76-dfe564ee6135}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Shaders">
+      <UniqueIdentifier>{703a467c-5827-40be-8aee-5964653807df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine Source Code\Source Files\Collision.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="Engine Source Code\Source Files\AudioSource.cpp">
       <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Graphics.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,5 +197,13 @@
     <ClInclude Include="Engine Source Code\Header Files\AudioSource.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Graphics.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Engine Source Code\Shaders\VertexShader.hlsl">
+      <Filter>Header Files\Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

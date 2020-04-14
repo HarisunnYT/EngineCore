@@ -4,6 +4,7 @@
 #include "Components.h"
 #include "InputSystem.h"
 #include "Camera.h"
+#include "Graphics.h"
 
 #include <iostream>
 
@@ -12,6 +13,7 @@ SDL_Event EngineCore::Event;
 ECS* EngineCore::Ecs = nullptr;
 Camera* EngineCore::camera = nullptr;
 AudioListener* EngineCore::audioListener = nullptr;
+Graphics* EngineCore::graphics = nullptr;
 
 bool EngineCore::isRunning = false;
 bool EngineCore::isDebug = false;
@@ -57,6 +59,7 @@ void EngineCore::Init(const char* title, int xpos, int ypos, bool fullscreen)
 	camera = new Camera();
 	Ecs = new ECS();
 	game = new Game();
+	graphics = new Graphics(window);
 
 	Ecs->AddEntity((Entity*)camera);
 }
@@ -101,6 +104,8 @@ void EngineCore::Render()
 	Ecs->Draw();
 	Ecs->DebugDraw();
 	Collision::DebugDraw();
+
+	graphics->DrawTestTriangle();
 
 	SDL_RenderPresent(Renderer);
 }

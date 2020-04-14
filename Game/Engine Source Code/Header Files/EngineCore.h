@@ -9,12 +9,14 @@
 #include "Physics.h"
 #include "Components.h"
 #include "Hit.h"
+#include "Graphics.h"
 
 #include <stdio.h>
 
 class Camera;
 class ECS;
 class AudioListener;
+class Graphics;
 class EngineCore
 {
 public:
@@ -26,7 +28,6 @@ public:
 
 	void HandleEvents();
 	void Update();
-	void FixedUpdate();
 	void Render();
 	void Clean();
 
@@ -37,6 +38,7 @@ public:
 	static ECS*				Ecs;
 	static Camera*			camera;
 	static AudioListener*	audioListener;
+	static Graphics*		graphics;
 
 	static bool				isRunning;
 	static bool				isDebug;
