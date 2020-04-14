@@ -13,6 +13,12 @@
 
 #include <stdio.h>
 
+enum RenderMode
+{
+	RENDERMODE_2D,
+	RENDERMODE_3D
+};
+
 class Camera;
 class ECS;
 class AudioListener;
@@ -42,6 +48,8 @@ public:
 
 	static bool				isRunning;
 	static bool				isDebug;
+
+	static RenderMode		renderMode;
 
 	static Vector2			screenSize;
 

@@ -24,8 +24,8 @@ Graphics::Graphics(SDL_Window* w)
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	ZeroMemory(&sd, sizeof(sd));
 	sd.BufferCount = 1;
-	sd.BufferDesc.Width = 0;
-	sd.BufferDesc.Height = 0;
+	sd.BufferDesc.Width = EngineCore::screenSize.x;
+	sd.BufferDesc.Height = EngineCore::screenSize.y;
 	sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	sd.BufferDesc.RefreshRate.Numerator = 0;
 	sd.BufferDesc.RefreshRate.Denominator = 0;
@@ -87,7 +87,8 @@ void Graphics::DrawTestTriangle()
 	{
 		{ 0.0f,  0.5f},
 		{ 0.5f, -0.5f},
-		{-0.5f, -0.5f}
+		{-0.5f, -0.5f},
+		{ 0.0f,  0.5f}
 	};
 
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
@@ -132,7 +133,7 @@ void Graphics::DrawTestTriangle()
 
 	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), nullptr);
 
-	pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
 
 	D3D11_VIEWPORT vp;
 	vp.Width = 800;

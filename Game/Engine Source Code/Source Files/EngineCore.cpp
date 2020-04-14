@@ -14,6 +14,7 @@ ECS* EngineCore::Ecs = nullptr;
 Camera* EngineCore::camera = nullptr;
 AudioListener* EngineCore::audioListener = nullptr;
 Graphics* EngineCore::graphics = nullptr;
+RenderMode EngineCore::renderMode = RENDERMODE_2D;
 
 bool EngineCore::isRunning = false;
 bool EngineCore::isDebug = false;
@@ -98,17 +99,25 @@ void EngineCore::Update()
 
 void EngineCore::Render()
 {
-	//SDL_RenderClear(Renderer);
+	if (renderMode == RENDERMODE_2D)
+	{
+		SDL_RenderClear(Renderer);
+	}
 
 	game->Render();
 	Ecs->Draw();
 	Ecs->DebugDraw();
 	Collision::DebugDraw();
 
-	graphics->DrawTestTriangle();
-	graphics->EndFrame();
-
-	//SDL_RenderPresent(Renderer);
+	if (renderMode == RENDERMODE_2D)
+	{
+		SDL_RenderPresent(Renderer);
+	}
+	else
+	{
+		graphics->DrawTestTriangle();
+		graphics->EndFrame();
+	}
 }
 
 void EngineCore::Clean()

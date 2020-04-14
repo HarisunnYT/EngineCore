@@ -8,10 +8,17 @@
 
 #include <iostream>
 
+Entity* e;
+
 Game::Game()
 {
+	EngineCore::renderMode = RENDERMODE_3D;
+
 	EngineCore::isDebug = false;
 	Collision::drawGrid = false;
+
+	e = &EngineCore::Ecs->AddEntity();
+	e->AddComponent<SpriteRenderer>("Assets/mushroom.png", Vector2(500, 500));
 }
 
 Game::~Game()
