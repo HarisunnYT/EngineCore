@@ -14,7 +14,7 @@ ECS* EngineCore::Ecs = nullptr;
 Camera* EngineCore::camera = nullptr;
 AudioListener* EngineCore::audioListener = nullptr;
 Graphics* EngineCore::graphics = nullptr;
-RenderMode EngineCore::renderMode = RENDERMODE_2D;
+RenderMode EngineCore::renderMode = RenderMode::RENDERMODE_2D;
 
 bool EngineCore::isRunning = false;
 bool EngineCore::isDebug = false;
@@ -60,7 +60,8 @@ void EngineCore::Init(const char* title, int xpos, int ypos, bool fullscreen)
 	camera = new Camera();
 	Ecs = new ECS();
 	game = new Game();
-	graphics = new Graphics(window);
+	graphics = new Graphics();
+	graphics->Init(window);
 
 	Ecs->AddEntity((Entity*)camera);
 }
@@ -99,7 +100,7 @@ void EngineCore::Update()
 
 void EngineCore::Render()
 {
-	if (renderMode == RENDERMODE_2D)
+	if (renderMode == RenderMode::RENDERMODE_2D)
 	{
 		SDL_RenderClear(Renderer);
 	}
@@ -109,13 +110,12 @@ void EngineCore::Render()
 	Ecs->DebugDraw();
 	Collision::DebugDraw();
 
-	if (renderMode == RENDERMODE_2D)
+	if (renderMode == RenderMode::RENDERMODE_2D)
 	{
 		SDL_RenderPresent(Renderer);
 	}
 	else
 	{
-		graphics->DrawTestTriangle();
 		graphics->EndFrame();
 	}
 }

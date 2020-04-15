@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 
-enum RenderMode
+enum class RenderMode
 {
 	RENDERMODE_2D,
 	RENDERMODE_3D
@@ -58,7 +58,7 @@ public:
 
 private:
 
-	SDL_Window* window;
+	SDL_Window*				window;
 };
 
 #endif

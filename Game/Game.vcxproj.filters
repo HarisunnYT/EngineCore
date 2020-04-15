@@ -40,6 +40,12 @@
     <Filter Include="Header Files\Shaders">
       <UniqueIdentifier>{703a467c-5827-40be-8aee-5964653807df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Rendering">
+      <UniqueIdentifier>{c8cd58ff-35e9-4833-8497-189c5c7bbe5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Rendering">
+      <UniqueIdentifier>{07325e17-614c-4cb6-9c1d-3845c88d7e37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine Source Code\Source Files\Collision.cpp">
@@ -116,6 +122,18 @@
     </ClCompile>
     <ClCompile Include="Engine Source Code\Source Files\Graphics.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\SwapChain.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\DeviceContext.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\VertexBuffer.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\ConstantBuffer.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +217,18 @@
     </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\Graphics.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\DeviceContext.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\SwapChain.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\VertexBuffer.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\ConstantBuffer.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

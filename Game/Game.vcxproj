@@ -172,6 +172,8 @@
     <ClCompile Include="Engine Source Code\Source Files\Camera.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Collider.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Collision.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\ConstantBuffer.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\DeviceContext.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\ECS.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\EngineCore.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Entity.cpp" />
@@ -184,12 +186,14 @@
     <ClCompile Include="Engine Source Code\Source Files\Point.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Rigidbody.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\SpriteRenderer.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\SwapChain.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\TextureManager.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Tile.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\TileMap.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Transform.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Vector2.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Vector3.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\VertexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +205,8 @@
     <ClInclude Include="Engine Source Code\Header Files\Collision.h" />
     <ClInclude Include="Engine Source Code\Header Files\Component.h" />
     <ClInclude Include="Engine Source Code\Header Files\Components.h" />
+    <ClInclude Include="Engine Source Code\Header Files\ConstantBuffer.h" />
+    <ClInclude Include="Engine Source Code\Header Files\DeviceContext.h" />
     <ClInclude Include="Engine Source Code\Header Files\ECS.h" />
     <ClInclude Include="Engine Source Code\Header Files\EngineCore.h" />
     <ClInclude Include="Engine Source Code\Header Files\Entity.h" />
@@ -214,12 +220,14 @@
     <ClInclude Include="Engine Source Code\Header Files\Rigidbody.h" />
     <ClInclude Include="Engine Source Code\Header Files\SecondaryComponents.h" />
     <ClInclude Include="Engine Source Code\Header Files\SpriteRenderer.h" />
+    <ClInclude Include="Engine Source Code\Header Files\SwapChain.h" />
     <ClInclude Include="Engine Source Code\Header Files\TextureManager.h" />
     <ClInclude Include="Engine Source Code\Header Files\Tile.h" />
     <ClInclude Include="Engine Source Code\Header Files\TileMap.h" />
     <ClInclude Include="Engine Source Code\Header Files\Transform.h" />
     <ClInclude Include="Engine Source Code\Header Files\Vector2.h" />
     <ClInclude Include="Engine Source Code\Header Files\Vector3.h" />
+    <ClInclude Include="Engine Source Code\Header Files\VertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Program Files (x86)\DirectXTK-master\Audio\DirectXTKAudio_Desktop_2019_Win8.vcxproj">

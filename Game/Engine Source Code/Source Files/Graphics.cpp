@@ -3,13 +3,28 @@
 #include <SDL.h>
 #include <SDL_syswm.h>
 
+namespace wrl = Microsoft::WRL;
+
 #include <d3dcompiler.h>
 
 #pragma comment(lib, "D3DCompiler.lib")
 
-namespace wrl = Microsoft::WRL;
+Graphics::Graphics()
+{
+}
 
-Graphics::Graphics(SDL_Window* w)
+Graphics::~Graphics()
+{
+	if (pContext != nullptr)
+		pContext->Release();
+	if (pDevice != nullptr)
+		pDevice->Release();
+
+	swapChain->Release();
+	deviceContext->Release();
+}
+
+void Graphics::Init(SDL_Window* w)
 {
 	SDL_SysWMinfo wminfo;
 	SDL_version v;
@@ -19,13 +34,13 @@ Graphics::Graphics(SDL_Window* w)
 	wminfo.version = v;
 
 	SDL_GetWindowWMInfo(w, &wminfo);
-	window = &wminfo.info.win.window;
+	HWND* window = &wminfo.info.win.window;
 
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	ZeroMemory(&sd, sizeof(sd));
 	sd.BufferCount = 1;
-	sd.BufferDesc.Width = EngineCore::screenSize.x;
-	sd.BufferDesc.Height = EngineCore::screenSize.y;
+	sd.BufferDesc.Width = static_cast<UINT>(EngineCore::screenSize.x);
+	sd.BufferDesc.Height = static_cast<UINT>(EngineCore::screenSize.y);
 	sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	sd.BufferDesc.RefreshRate.Numerator = 0;
 	sd.BufferDesc.RefreshRate.Denominator = 0;
@@ -39,110 +54,54 @@ Graphics::Graphics(SDL_Window* w)
 	sd.Flags = 0;
 	sd.Windowed = true;
 
-	D3D11CreateDeviceAndSwapChain(
-		nullptr,
-		D3D_DRIVER_TYPE_HARDWARE,
-		nullptr,
-		0,
-		nullptr,
-		0,
-		D3D11_SDK_VERSION,
-		&sd,
-		&pSwap,
-		&pDevice,
-		nullptr,
-		&pContext);
+	D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0, nullptr, 0, D3D11_SDK_VERSION, &pDevice, nullptr, &pContext);
+	
+	pDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)&pDxgiDevice);
+	pDxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&pAdaptor);
+	pAdaptor->GetParent(__uuidof(IDXGIFactory), (void**)&pFactory);
 
-	wrl::ComPtr<ID3D11Resource> pBackBuffer;
-	pSwap->GetBuffer(0, __uuidof(ID3D11Resource), &pBackBuffer);
-	pDevice->CreateRenderTargetView(pBackBuffer.Get(), nullptr, &pTarget);
-
-	pBackBuffer->Release();
-}
-
-Graphics::~Graphics()
-{
-	if (pContext != nullptr)
-		pContext->Release();
-	if (pSwap != nullptr)
-		pSwap->Release();
-	if (pDevice != nullptr)
-		pDevice->Release();
+	deviceContext = new DeviceContext();
+	swapChain = new SwapChain(sd, pTarget);
+	vertexBuffer = new VertexBuffer();
 }
 
 void Graphics::EndFrame()
 {
-	pSwap->Present(1u, 0u);
+	swapChain->Present();
 }
 
 void Graphics::DrawTestTriangle()
 {
 	struct Vertex
 	{
-		float x;
-		float y;
+		struct
+		{
+			float x, y;
+		} pos;
+		struct
+		{
+			unsigned char r, g, b, a;
+		} color;
 	};
 
-	const Vertex verticies[] =
+	Vertex verticies[] =
 	{
-		{ 0.0f,  0.5f},
-		{ 0.5f, -0.5f},
-		{-0.5f, -0.5f},
-		{ 0.0f,  0.5f}
+		{ -0.5f,  -0.5f, 255, 0, 0, 0},
+		{ -0.5f,   0.5f, 0, 255, 0, 0},
+		{  0.5f,  -0.5f, 0, 0, 255, 0},
+		{  0.5f,   0.5f, 255, 0, 0, 0}
 	};
+	
+	deviceContext->SetViewportSize();
 
-	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
-	D3D11_BUFFER_DESC bd = {};
-	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	bd.Usage = D3D11_USAGE_DEFAULT;
-	bd.CPUAccessFlags = 0u;
-	bd.MiscFlags = 0u;
-	bd.ByteWidth = sizeof(verticies);
-	bd.StructureByteStride = sizeof(Vertex);
+	deviceContext->SetPixelShader();
+	deviceContext->SetVertexShader();
 
-	D3D11_SUBRESOURCE_DATA sd = {};
-	sd.pSysMem = verticies;
+	vertexBuffer->Load(verticies, sizeof(Vertex), ARRAYSIZE(verticies), deviceContext->vsBlob->GetBufferPointer(), deviceContext->vsBlob->GetBufferSize());
 
-	pDevice->CreateBuffer(&bd, &sd, &pVertexBuffer);
-
-	const UINT stride = sizeof(Vertex);
-	const UINT offset = 0u;
-
-	pContext->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
-
-	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
-	wrl::ComPtr<ID3DBlob> pBlob;
-	D3DReadFileToBlob(L"PixelShader.cso", &pBlob);
-	pDevice->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader);
-	pContext->PSSetShader(pPixelShader.Get(), nullptr, 0u);
-
-	wrl::ComPtr<ID3D11VertexShader> pVertexShader;
-	D3DReadFileToBlob(L"VertexShader.cso", &pBlob);
-	pDevice->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pVertexShader);
-	pContext->VSSetShader(pVertexShader.Get(), nullptr, 0u);
-
-	wrl::ComPtr<ID3D11InputLayout> pInputLayout;
-	const D3D11_INPUT_ELEMENT_DESC ied[] =
-	{
-		{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-	};
-
-	pDevice->CreateInputLayout(ied, (UINT)std::size(ied), pBlob->GetBufferPointer(), pBlob->GetBufferSize(), &pInputLayout);
-
-	pContext->IASetInputLayout(pInputLayout.Get());
+	deviceContext->SetVertexBuffer(vertexBuffer);
 
 	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), nullptr);
 
-	pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
-
-	D3D11_VIEWPORT vp;
-	vp.Width = 800;
-	vp.Height = 600;
-	vp.MinDepth = 0;
-	vp.MaxDepth = 1;
-	vp.TopLeftX = 0;
-	vp.TopLeftY = 0;
-	pContext->RSSetViewports(1u, &vp);
-
-	pContext->Draw((UINT)std::size(verticies), 0u);
+	deviceContext->DrawTriangleList((UINT)std::size(verticies), 0u);
 }

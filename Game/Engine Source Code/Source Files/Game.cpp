@@ -12,7 +12,7 @@ Entity* e;
 
 Game::Game()
 {
-	EngineCore::renderMode = RENDERMODE_3D;
+	EngineCore::renderMode = RenderMode::RENDERMODE_3D;
 
 	EngineCore::isDebug = false;
 	Collision::drawGrid = false;
@@ -35,6 +35,7 @@ void Game::LateUpdate()
 
 void Game::Render()
 {
+	EngineCore::graphics->DrawTestTriangle();
 }
 
 void Game::Physics()
