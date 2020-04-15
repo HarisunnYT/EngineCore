@@ -8,6 +8,8 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
+#include "VertexShader.h"
+#include "PixelShader.h"
 
 #include <Windows.h>
 #include <d3d11_4.h>
@@ -16,6 +18,8 @@
 class SwapChain;
 class DeviceContext;
 class VertexBuffer;
+class VertexShader;
+class PixelShader;
 class Graphics
 {
 public:
@@ -45,8 +49,16 @@ private:
 	DeviceContext* deviceContext = nullptr;
 	VertexBuffer* vertexBuffer = nullptr;
 
+	VertexShader* vertexShader = nullptr;
+	PixelShader* pixelShader = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
+	Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
+
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pTarget;
 
+	friend class VertexShader;
+	friend class PixelShader;
 };
 
 #endif

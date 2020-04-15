@@ -17,18 +17,12 @@ public:
 	void SetVertexBuffer(VertexBuffer* buffer);
 	void SetViewportSize();
 
-	void SetPixelShader();
-	void SetVertexShader();
-
 	void DrawTriangleList(UINT vertex_count, UINT start_vertex_index);
 	void DrawTriangleStrip(UINT vertex_count, UINT start_vertex_index);
 
 	void Release();
 
 private:
-
-	Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
-	Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
 
 	friend class ConstantBuffer;
 	friend class Graphics;

@@ -120,9 +120,6 @@
     <ClCompile Include="Engine Source Code\Source Files\AudioSource.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\Graphics.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Engine Source Code\Source Files\SwapChain.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
@@ -133,6 +130,15 @@
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Engine Source Code\Source Files\ConstantBuffer.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\PixelShader.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\VertexShader.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Graphics.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
@@ -215,9 +221,6 @@
     <ClInclude Include="Engine Source Code\Header Files\AudioSource.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\Graphics.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\DeviceContext.h">
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
@@ -228,6 +231,15 @@
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\ConstantBuffer.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\PixelShader.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\VertexShader.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Graphics.h">
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>

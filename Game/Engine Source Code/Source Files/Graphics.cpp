@@ -63,6 +63,9 @@ void Graphics::Init(SDL_Window* w)
 	deviceContext = new DeviceContext();
 	swapChain = new SwapChain(sd, pTarget);
 	vertexBuffer = new VertexBuffer();
+
+	vertexShader = new VertexShader(L"VertexShader.cso");
+	pixelShader = new PixelShader(L"PixelShader.cso");
 }
 
 void Graphics::EndFrame()
@@ -94,14 +97,11 @@ void Graphics::DrawTestTriangle()
 	
 	deviceContext->SetViewportSize();
 
-	deviceContext->SetPixelShader();
-	deviceContext->SetVertexShader();
-
-	vertexBuffer->Load(verticies, sizeof(Vertex), ARRAYSIZE(verticies), deviceContext->vsBlob->GetBufferPointer(), deviceContext->vsBlob->GetBufferSize());
+	vertexBuffer->Load(verticies, sizeof(Vertex), ARRAYSIZE(verticies), vsBlob->GetBufferPointer(), (UINT)vsBlob->GetBufferSize());
 
 	deviceContext->SetVertexBuffer(vertexBuffer);
 
 	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), nullptr);
 
-	deviceContext->DrawTriangleList((UINT)std::size(verticies), 0u);
+	deviceContext->DrawTriangleStrip((UINT)std::size(verticies), 0u);
 }

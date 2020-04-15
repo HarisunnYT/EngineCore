@@ -183,6 +183,7 @@
     <ClCompile Include="Engine Source Code\Source Files\InputSystem.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Particle.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Physics.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\PixelShader.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Point.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Rigidbody.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\SpriteRenderer.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="Engine Source Code\Source Files\Vector2.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Vector3.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\VertexBuffer.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\VertexShader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +218,7 @@
     <ClInclude Include="Engine Source Code\Header Files\InputSystem.h" />
     <ClInclude Include="Engine Source Code\Header Files\Particle.h" />
     <ClInclude Include="Engine Source Code\Header Files\Physics.h" />
+    <ClInclude Include="Engine Source Code\Header Files\PixelShader.h" />
     <ClInclude Include="Engine Source Code\Header Files\Point.h" />
     <ClInclude Include="Engine Source Code\Header Files\Rigidbody.h" />
     <ClInclude Include="Engine Source Code\Header Files\SecondaryComponents.h" />
@@ -228,6 +231,7 @@
     <ClInclude Include="Engine Source Code\Header Files\Vector2.h" />
     <ClInclude Include="Engine Source Code\Header Files\Vector3.h" />
     <ClInclude Include="Engine Source Code\Header Files\VertexBuffer.h" />
+    <ClInclude Include="Engine Source Code\Header Files\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Program Files (x86)\DirectXTK-master\Audio\DirectXTKAudio_Desktop_2019_Win8.vcxproj">
