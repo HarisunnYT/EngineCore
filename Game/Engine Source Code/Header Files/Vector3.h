@@ -29,6 +29,8 @@ public:
 	Vector3& operator *(float multiplier);
 	Vector3& operator *=(float multiplier);
 
+	Vector3 operator *(const Vector3& vec);
+
 	Vector3& operator /(float multiplier);
 	Vector3& operator /=(float multiplier);
 
@@ -41,6 +43,7 @@ public:
 	Vector3 Normalised();
 
 	float Magnitude();
+	float Dot(Vector3& vec);
 
 	std::string ToString();
 	static Vector3 FromString(std::string str);

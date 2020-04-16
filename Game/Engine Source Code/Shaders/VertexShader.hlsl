@@ -4,10 +4,10 @@ struct VSOut
 	float4 pos : SV_POSITION;
 };
 
-VSOut main(float2 pos : POSITION, float3 color : COLOR)
+VSOut main(float3 pos : POSITION, float3 color : COLOR)
 {
 	VSOut o;
-	o.pos = float4(pos.x, pos.y, 0.0f, 1.0f);
+	o.pos = float4(pos.x, pos.y, pos.z, 1.0f);
 	o.color = color;
 
 	return o;

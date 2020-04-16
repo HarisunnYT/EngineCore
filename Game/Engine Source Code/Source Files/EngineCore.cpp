@@ -4,17 +4,19 @@
 #include "Components.h"
 #include "InputSystem.h"
 #include "Camera.h"
-#include "Graphics.h"
+
+#include "3rdPartyLibs/Includes/GL/glew.h"
+#include "SDL.h"
+#include "SDL_opengl.h"
 
 #include <iostream>
 
+SDL_GLContext EngineCore::mainContext;
 SDL_Renderer* EngineCore::Renderer = nullptr;
 SDL_Event EngineCore::Event;
 ECS* EngineCore::Ecs = nullptr;
 Camera* EngineCore::camera = nullptr;
 AudioListener* EngineCore::audioListener = nullptr;
-Graphics* EngineCore::graphics = nullptr;
-RenderMode EngineCore::renderMode = RenderMode::RENDERMODE_2D;
 
 bool EngineCore::isRunning = false;
 bool EngineCore::isDebug = false;
@@ -22,6 +24,9 @@ Vector2 EngineCore::screenSize = Vector2(800.0f, 600.0f);
 
 float EngineCore::deltaTime = 0.0;
 float EngineCore::fixedTimeStep = 0.1f;
+
+SDL_Texture* texture;
+const void* pixels;
 
 Game* game = nullptr;
 
@@ -35,33 +40,27 @@ EngineCore::~EngineCore()
 
 void EngineCore::Init(const char* title, int xpos, int ypos, bool fullscreen)
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
-	{
-		int flags = 0;
-		if (fullscreen)
-		{
-			flags = SDL_WINDOW_FULLSCREEN;
-		}
+	SDL_Init(SDL_INIT_EVERYTHING);
 
-		window = SDL_CreateWindow(title, xpos, ypos, static_cast<int>(screenSize.x), static_cast<int>(screenSize.y), flags);
-		Renderer = SDL_CreateRenderer(window, -1, 0);
+	window = SDL_CreateWindow(title, xpos, ypos, static_cast<int>(screenSize.x), static_cast<int>(screenSize.y), SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+	mainContext = SDL_GL_CreateContext(window);
 
-		SDL_SetRenderDrawColor(Renderer, 99, 173, 255, 255);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, (GLdouble)screenSize.x, (GLdouble)screenSize.y, 0, -1, 1);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
-		isRunning = true;
-	}
-	else
-	{
-		isRunning = false;
-	}
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_DEPTH_TEST);
+
+	isRunning = true;
 
 	Collision::Init();
 
 	camera = new Camera();
 	Ecs = new ECS();
 	game = new Game();
-	graphics = new Graphics();
-	graphics->Init(window);
 
 	Ecs->AddEntity((Entity*)camera);
 }
@@ -100,24 +99,25 @@ void EngineCore::Update()
 
 void EngineCore::Render()
 {
-	if (renderMode == RenderMode::RENDERMODE_2D)
-	{
-		SDL_RenderClear(Renderer);
-	}
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
+	//glTranslatef(100.5f, 0.0f, 0.0f);
+
+	//glBegin(GL_TRIANGLES);
+	//
+	//glVertex3f(0.0f, 121.0f, 0.0f);
+	//glVertex3f(-121.0f, -121.0f, 0.0f);
+	//glVertex3f(121.0f, -121.0f, 0.0f);
+	//glEnd();
 
 	game->Render();
 	Ecs->Draw();
 	Ecs->DebugDraw();
 	Collision::DebugDraw();
 
-	if (renderMode == RenderMode::RENDERMODE_2D)
-	{
-		SDL_RenderPresent(Renderer);
-	}
-	else
-	{
-		graphics->EndFrame();
-	}
+	SDL_GL_SwapWindow(window);
 }
 
 void EngineCore::Clean()

@@ -5,7 +5,7 @@
 
 #pragma warning (disable : 4005)
 
-#include "Audio.h"
+#include "3rdPartyLibs/Includes/DirectX/Audio.h"
 #include "EngineCore.h"
 
 class AudioListener : public Component

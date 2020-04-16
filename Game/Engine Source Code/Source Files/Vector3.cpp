@@ -86,6 +86,13 @@ Vector3& Vector3::operator*=(float multiplier)
 	return this->Multiply(multiplier);
 }
 
+Vector3 Vector3::operator*(const Vector3& vec)
+{
+	return Vector3(y * vec.z - z * vec.y,
+				   z * vec.x - x * vec.z,
+		           x * vec.y - y * vec.x);
+}
+
 Vector3& Vector3::operator/(float multiplier)
 {
 	return this->Divide(multiplier);
@@ -134,6 +141,11 @@ Vector3 Vector3::Normalised()
 float Vector3::Magnitude()
 {
 	return sqrt((x * x) + (y * y) + (z * z));
+}
+
+float Vector3::Dot(Vector3& vec)
+{
+	return (x * vec.x + y * vec.y + z * vec.z);
 }
 
 std::string Vector3::ToString()

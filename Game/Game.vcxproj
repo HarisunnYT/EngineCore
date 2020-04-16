@@ -75,7 +75,7 @@
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(IncludePath);$(DXSDK_DIR)Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Game Source Code\Header Files;$(SolutionDir)\Game\Engine Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include</IncludePath>
+    <IncludePath>$(IncludePath);$(DXSDK_DIR)Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Game Source Code\Header Files;$(SolutionDir)\Game\Engine Source Code\Header Files;$(ProjectDir)\3rdPartyLibs\Include</IncludePath>
     <LibraryPath>$(LibraryPath);$(DXSDK_DIR)Lib\x64</LibraryPath>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
@@ -83,7 +83,7 @@
     <IncludePath>C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(IncludePath);$(DXSDK_DIR)Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Game Source Code\Header Files;$(SolutionDir)\Game\Engine Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include</IncludePath>
+    <IncludePath>$(IncludePath);$(DXSDK_DIR)Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Game Source Code\Header Files;$(SolutionDir)\Game\Engine Source Code\Header Files;$(ProjectDir)\3rdPartyLibs\Include</IncludePath>
     <GenerateManifest>false</GenerateManifest>
     <LibraryPath>$(LibraryPath);$(DXSDK_DIR)Lib\x64</LibraryPath>
   </PropertyGroup>
@@ -93,12 +93,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Repos\EngineCore\Game\GLFW;C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x86;C:\dev\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Repos\EngineCore\Game\lib-vc2019;C:\dev\SDL2_image-2.0.1\lib\x86;C:\dev\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2x86.lib;SDL2_imagex86.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -108,18 +108,19 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;$(SolutionDir)\Game;$(SolutionDir)\Engine Source Code\Header Files;$(SolutionDir)\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\3rdPartyLibs\Include;$(SolutionDir)\Game;$(SolutionDir)\Engine Source Code\Header Files;$(SolutionDir)\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>Default</LanguageStandard>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x64;C:\dev\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(ProjectDir)\3rdPartyLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,13 +131,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Repos\EngineCore\Game\GLFW;C:\Program Files %28x86%29\DirectXTK-master\Inc;C:\Repos\2D-Engine\Game;C:\Repos\2D-Engine\Game\Engine Source Code\Header Files;C:\Repos\2D-Engine\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x86;C:\dev\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Repos\EngineCore\Game\lib-vc2019;C:\dev\SDL2_image-2.0.1\lib\x86;C:\dev\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2x86.lib;SDL2_imagex86.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -148,8 +149,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\DirectXTK-master\Inc;$(SolutionDir)\Game;$(SolutionDir)\Game\Engine Source Code\Header Files;$(SolutionDir)\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)NDEBUG</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\3rdPartyLibs\Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Engine Source Code\Header Files;$(SolutionDir)\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -157,11 +158,11 @@
       <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.1\lib\x64;C:\dev\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\3rdPartyLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AssemblyDebug>true</AssemblyDebug>
     </Link>
   </ItemDefinitionGroup>
@@ -172,30 +173,27 @@
     <ClCompile Include="Engine Source Code\Source Files\Camera.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Collider.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Collision.cpp" />
-    <ClCompile Include="Engine Source Code\Source Files\ConstantBuffer.cpp" />
-    <ClCompile Include="Engine Source Code\Source Files\DeviceContext.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\ECS.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\EngineCore.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Entity.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Game.cpp" />
-    <ClCompile Include="Engine Source Code\Source Files\Graphics.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Hit.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\InputSystem.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Matrix4x4.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\MeshRenderer.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Model.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Particle.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Physics.cpp" />
-    <ClCompile Include="Engine Source Code\Source Files\PixelShader.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Point.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Rigidbody.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\SpriteRenderer.cpp" />
-    <ClCompile Include="Engine Source Code\Source Files\SwapChain.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Texture.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\TextureManager.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Tile.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\TileMap.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Transform.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Vector2.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Vector3.cpp" />
-    <ClCompile Include="Engine Source Code\Source Files\VertexBuffer.cpp" />
-    <ClCompile Include="Engine Source Code\Source Files\VertexShader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -207,31 +205,28 @@
     <ClInclude Include="Engine Source Code\Header Files\Collision.h" />
     <ClInclude Include="Engine Source Code\Header Files\Component.h" />
     <ClInclude Include="Engine Source Code\Header Files\Components.h" />
-    <ClInclude Include="Engine Source Code\Header Files\ConstantBuffer.h" />
-    <ClInclude Include="Engine Source Code\Header Files\DeviceContext.h" />
     <ClInclude Include="Engine Source Code\Header Files\ECS.h" />
     <ClInclude Include="Engine Source Code\Header Files\EngineCore.h" />
     <ClInclude Include="Engine Source Code\Header Files\Entity.h" />
     <ClInclude Include="Engine Source Code\Header Files\Game.h" />
-    <ClInclude Include="Engine Source Code\Header Files\Graphics.h" />
     <ClInclude Include="Engine Source Code\Header Files\Hit.h" />
     <ClInclude Include="Engine Source Code\Header Files\InputSystem.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Matrix4x4.h" />
+    <ClInclude Include="Engine Source Code\Header Files\MeshRenderer.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Model.h" />
     <ClInclude Include="Engine Source Code\Header Files\Particle.h" />
     <ClInclude Include="Engine Source Code\Header Files\Physics.h" />
-    <ClInclude Include="Engine Source Code\Header Files\PixelShader.h" />
     <ClInclude Include="Engine Source Code\Header Files\Point.h" />
     <ClInclude Include="Engine Source Code\Header Files\Rigidbody.h" />
     <ClInclude Include="Engine Source Code\Header Files\SecondaryComponents.h" />
     <ClInclude Include="Engine Source Code\Header Files\SpriteRenderer.h" />
-    <ClInclude Include="Engine Source Code\Header Files\SwapChain.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Texture.h" />
     <ClInclude Include="Engine Source Code\Header Files\TextureManager.h" />
     <ClInclude Include="Engine Source Code\Header Files\Tile.h" />
     <ClInclude Include="Engine Source Code\Header Files\TileMap.h" />
     <ClInclude Include="Engine Source Code\Header Files\Transform.h" />
     <ClInclude Include="Engine Source Code\Header Files\Vector2.h" />
     <ClInclude Include="Engine Source Code\Header Files\Vector3.h" />
-    <ClInclude Include="Engine Source Code\Header Files\VertexBuffer.h" />
-    <ClInclude Include="Engine Source Code\Header Files\VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Program Files (x86)\DirectXTK-master\Audio\DirectXTKAudio_Desktop_2019_Win8.vcxproj">

@@ -3,6 +3,12 @@
 
 #include <time.h>
 
+#pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "glu32")
+
+#include <gl/GL.h>
+#include <gl/GLU.h>
+
 EngineCore* engineCore = nullptr;
 
 double start = 0.0;

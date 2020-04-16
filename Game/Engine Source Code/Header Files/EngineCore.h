@@ -3,26 +3,19 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
+
 #include "Vector3.h"
 #include "Vector2.h"
 #include "Collision.h"
 #include "Physics.h"
 #include "Components.h"
 #include "Hit.h"
-#include "Graphics.h"
 
 #include <stdio.h>
-
-enum class RenderMode
-{
-	RENDERMODE_2D,
-	RENDERMODE_3D
-};
 
 class Camera;
 class ECS;
 class AudioListener;
-class Graphics;
 class EngineCore
 {
 public:
@@ -41,15 +34,13 @@ public:
 
 	static SDL_Renderer*	Renderer;
 	static SDL_Event		Event;
+	static SDL_GLContext	mainContext;
 	static ECS*				Ecs;
 	static Camera*			camera;
 	static AudioListener*	audioListener;
-	static Graphics*		graphics;
 
 	static bool				isRunning;
 	static bool				isDebug;
-
-	static RenderMode		renderMode;
 
 	static Vector2			screenSize;
 

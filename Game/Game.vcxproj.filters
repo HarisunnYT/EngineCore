@@ -46,6 +46,12 @@
     <Filter Include="Source Files\Engine\Rendering">
       <UniqueIdentifier>{07325e17-614c-4cb6-9c1d-3845c88d7e37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Math">
+      <UniqueIdentifier>{2a98f744-5a26-47f8-abfc-1c5d3857a724}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Math">
+      <UniqueIdentifier>{79c189b7-fb1b-4b70-89ae-c3114ec4a81d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine Source Code\Source Files\Collision.cpp">
@@ -66,19 +72,10 @@
     <ClCompile Include="Engine Source Code\Source Files\InputSystem.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\Point.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Engine Source Code\Source Files\TextureManager.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine Source Code\Source Files\TileMap.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\Vector2.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\Vector3.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -120,25 +117,25 @@
     <ClCompile Include="Engine Source Code\Source Files\AudioSource.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\SwapChain.cpp">
+    <ClCompile Include="Engine Source Code\Source Files\Point.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Vector2.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Vector3.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Matrix4x4.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\MeshRenderer.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Model.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\DeviceContext.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\VertexBuffer.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\ConstantBuffer.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\PixelShader.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\VertexShader.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine Source Code\Source Files\Graphics.cpp">
+    <ClCompile Include="Engine Source Code\Source Files\Texture.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,9 +164,6 @@
     <ClInclude Include="Engine Source Code\Header Files\InputSystem.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\Point.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\SecondaryComponents.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -177,12 +171,6 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\TileMap.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\Vector2.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\Vector3.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\Animator.h">
@@ -221,25 +209,25 @@
     <ClInclude Include="Engine Source Code\Header Files\AudioSource.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\DeviceContext.h">
+    <ClInclude Include="Engine Source Code\Header Files\Vector3.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Vector2.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Point.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Matrix4x4.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\MeshRenderer.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Texture.h">
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\SwapChain.h">
-      <Filter>Header Files\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\VertexBuffer.h">
-      <Filter>Header Files\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\ConstantBuffer.h">
-      <Filter>Header Files\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\PixelShader.h">
-      <Filter>Header Files\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\VertexShader.h">
-      <Filter>Header Files\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine Source Code\Header Files\Graphics.h">
+    <ClInclude Include="Engine Source Code\Header Files\Model.h">
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>

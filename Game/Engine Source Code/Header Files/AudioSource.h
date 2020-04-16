@@ -3,7 +3,7 @@
 #ifndef AUDIOSOURCE_H
 #define AUDIOSOURCE_H
 
-#include "Audio.h"
+#include "3rdPartyLibs/Includes/DirectX/Audio.h"
 #include "EngineCore.h"
 
 struct AudioClip
