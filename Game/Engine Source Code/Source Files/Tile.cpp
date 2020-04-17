@@ -30,7 +30,7 @@ void Tile::ManualConstruction(Vector3 pos, float s)
 void Tile::Init()
 {
 	transform = &entity->GetComponent<Transform>();
-	transform->SetPosition(startingPosition);
+	transform->position = startingPosition;
 	transform->scale = startingScale;
 
 	if (entity->HasComponent<Collider>())
@@ -42,8 +42,8 @@ void Tile::Init()
 
 void Tile::Update()
 {
-	destinationRect.x = static_cast<int>(transform->GetPosition().x);
-	destinationRect.y = static_cast<int>(transform->GetPosition().y);
+	destinationRect.x = static_cast<int>(transform->position.x);
+	destinationRect.y = static_cast<int>(transform->position.y);
 
 	destinationRect.w = static_cast<int>(size.x * transform->scale.x);
 	destinationRect.h = static_cast<int>(size.y * transform->scale.y);
@@ -89,7 +89,7 @@ bool Tile::TryParse(std::string value, Entity* entity)
 
 	if (name == Tile::componentName)
 	{
-		entity->AddComponent<Tile>(inPath.c_str(), entity->GetComponent<Transform>().GetRawPosition(), Vector2::FromString(inSize), Vector2::FromString(inSource), 1.0f);
+		entity->AddComponent<Tile>(inPath.c_str(), entity->GetComponent<Transform>().position, Vector2::FromString(inSize), Vector2::FromString(inSource), 1.0f);
 
 		return true;
 	}

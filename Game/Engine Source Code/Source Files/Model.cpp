@@ -65,7 +65,7 @@ void Model::DrawObject(bool transparency)
 					continue;
 				}
 
-				material->Kd[4] = material->alpha;
+				material->Kd[3] = material->alpha;
 				glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, (GLfloat*)material->Ka);
 				glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, (GLfloat*)material->Kd);
 				glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (GLfloat*)material->Ks);
@@ -99,13 +99,15 @@ void Model::DrawFace(Face& face)
 
 	for (int v = 0; v < (int)face.numVertices; v++)
 	{
-		if ((int)face.numUVWs > v&& face.UVWs != nullptr)
+		if ((int)face.numUVWs > v && face.UVWs != nullptr)
 			glTexCoord2f(face.UVWs[v]->x, face.UVWs[v]->y);
-		if ((int)face.numNormals > v&& face.normals != nullptr)
-			glTexCoord3d(face.normals[v]->x, face.normals[v]->y, face.normals[v]->z);
-		if ((int)face.numVertices > v&& face.normals != nullptr)
-			glTexCoord3d(face.verticies[v]->x, face.verticies[v]->y, face.verticies[v]->z);
+		if ((int)face.numNormals > v && face.normals != nullptr)
+			glNormal3d(face.normals[v]->x, face.normals[v]->y, face.normals[v]->z);
+		if ((int)face.numVertices > v && face.verticies != nullptr)
+			glVertex3d(face.verticies[v]->x, face.verticies[v]->y, face.verticies[v]->z);
 	}
+
+	glEnd();
 }
 
 void Model::DeleteObjects(void)
@@ -163,7 +165,7 @@ void Model::DeleteObjects(void)
 bool Model::LoadObject(string fn)
 {
 	fileName = fn;
-	ifstream istr(fn.data());
+	std::ifstream istr(fileName.data());
 
 	if (!istr)
 	{
@@ -220,6 +222,7 @@ bool Model::LoadObject(string fn)
 				if (materials[i]->name == materialName)
 				{
 					currentMaterial = materials[i];
+					break;
 				}
 			}
 		}
@@ -288,44 +291,44 @@ bool Model::LoadObject(string fn)
 					{
 						if (temp == '/' || temp == ' ')
 							break;
-
-						newLine.get(temp);
-
-						if (temp == '/')
-						{
-							noUV = true;
-						}
-						else
-						{
-							newLine.unget();
-						}
-
-						tempVertices.push_back(verticies[--vertex]);
 					}
 
-					if ((int)UVWs.size() > 0 && noUV == false)
+					newLine.get(temp);
+
+					if (temp == '/')
 					{
-						newLine >> uvw;
-						while (newLine.get(temp))
-						{
-							if (temp == '/' || temp == ' ')
-								break;
-						}
-
-						tempUVWs.push_back(UVWs[--uvw]);
+						noUV = true;
 					}
-
-					if ((int)normals.size() > 0)
+					else
 					{
-						newLine >> normal;
-						while (newLine.get(temp))
-						{
-							if (temp == '/' || temp == ' ')
-								break;
-						}
-
-						tempNormals.push_back(normals[--normal]);
+						newLine.unget();
 					}
+
+					tempVertices.push_back(verticies[--vertex]);
+				}
+
+				if ((int)UVWs.size() > 0 && noUV == false)
+				{
+					newLine >> uvw;
+					while (newLine.get(temp))
+					{
+						if (temp == '/' || temp == ' ')
+							break;
+					}
+
+					tempUVWs.push_back(UVWs[--uvw]);
+				}
+
+				if ((int)normals.size() > 0)
+				{
+					newLine >> normal;
+					while (newLine.get(temp))
+					{
+						if (temp == '/' || temp == ' ')
+							break;
+					}
+
+					tempNormals.push_back(normals[--normal]);
 				}
 			}
 
@@ -359,16 +362,16 @@ bool Model::LoadObject(string fn)
 
 			if (newFace->numVertices >= 3)
 			{
-				Vector3 vector1 = (*newFace->verticies[0] - (*newFace->verticies[1])).Normalised();
-				Vector3 vector2 = (*newFace->verticies[0] - (*newFace->verticies[2])).Normalised();
+				Vector3 vector1 = ((*newFace->verticies[0]) - (*newFace->verticies[1])).Normalised();
+				Vector3 vector2 = ((*newFace->verticies[0]) - (*newFace->verticies[2])).Normalised();
 				newFace->faceNormal = vector1 * vector2;
 			}
 		}
 	}
 
-	float xMin, xMax;
-	float yMin, yMax;
-	float zMin, zMax;
+	float xMin = 0, xMax = 0;
+	float yMin = 0, yMax = 0;
+	float zMin = 0, zMax = 0;
 
 	center = Vector3::Zero();
 

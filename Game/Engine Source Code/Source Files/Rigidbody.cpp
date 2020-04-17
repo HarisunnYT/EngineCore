@@ -57,7 +57,7 @@ void Rigidbody::Physics()
 
 void Rigidbody::LateUpdate()
 {
-	transform->SetRawPosition(transform->GetRawPosition() + (Vector3(velocity.x, -velocity.y, 0) * EngineCore::deltaTime));
+	transform->position +=  Vector3(velocity.x, -velocity.y, 0) * EngineCore::deltaTime;
 
 	if (entity->HasComponent<Collider>())
 	{

@@ -7,21 +7,33 @@
 #include "InputSystem.h"
 #include "Engine Source Code/Header Files/Model.h"
 
+#include "Drawable.h"
+#include "Texture.h"
+#include "Light.h"
+
+#include "Cube.h"
+
 #include <iostream>
 
-Entity* e;
-Model* model;
+Entity* light;
+Entity* cube;
 
 Game::Game()
 {
-	model = new Model("Assets/Handgun_obj");
-
 	EngineCore::isDebug = false;
 	Collision::drawGrid = false;
 
-	//e = &EngineCore::Ecs->AddEntity();
-	//e->AddComponent<SpriteRenderer>("Assets/mushroom.png", Vector2(500, 500));
+	glEnable(GL_LIGHTING);
 
+	Light::StaticInitialise();
+
+	cube = &EngineCore::Ecs->AddEntity();
+	cube->AddComponent<MeshRenderer>(new Cube());
+
+	light = &EngineCore::Ecs->AddEntity();
+	light->AddComponent<Light>(LIGHT_TYPE::LIGHT_SPOT);
+	light->GetComponent<Light>().SetDiffuse(2.0f, 2.0f, 2.0f, 1.0f);
+	light->transform->position = Vector3(0.0f, 5.0f, 0.0f);
 }
 
 Game::~Game()
@@ -30,6 +42,7 @@ Game::~Game()
 
 void Game::Update()
 {
+	cube->transform->position.x -= 0.01f;
 }
 
 void Game::LateUpdate()
@@ -38,26 +51,7 @@ void Game::LateUpdate()
 
 void Game::Render()
 {
-	glDisable(GL_LIGHTING);
-	glEnable(GL_BLEND);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	glTranslatef(400, 300, 0);
-	glColor3f(1.0f, 0.0f, 0.0f);
-
-	glBegin(GL_TRIANGLES);
-
-	glVertex3f(0.0f, 121.0f, 0.0f);
-	glVertex3f(-121.0f, -121.0f, 0.0f);
-	glVertex3f(121.0f, -121.0f, 0.0f);
-	glEnd();
-
-	//model->DrawModel();
-
-	glEnd();
-
+	glTranslatef(0, 0, -25);
 }
 
 void Game::Physics()

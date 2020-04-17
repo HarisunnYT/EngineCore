@@ -12,13 +12,8 @@ public:
 	Transform();
 	Transform(Vector3 pos);
 
-	Vector3 GetPosition();
-	void SetPosition(Vector3 pos);
-
-	Vector3 GetRawPosition();
-	void SetRawPosition(Vector3 pos);
-
 	Vector2 scale;
+	Vector3	position;
 
 	std::string Parse() override;
 	static bool TryParse(std::string value, Entity* entity);
@@ -29,10 +24,6 @@ public:
 	{
 		archive(componentName, position.ToString(), scale.ToString());
 	}
-
-private:
-	
-	Vector3			position;
 };
 
 #endif

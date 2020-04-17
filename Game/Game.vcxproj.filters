@@ -138,6 +138,15 @@
     <ClCompile Include="Engine Source Code\Source Files\Texture.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Cube.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Drawable.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Light.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine Source Code\Header Files\Collision.h">
@@ -229,6 +238,15 @@
     </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\Model.h">
       <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Cube.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Drawable.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Light.h">
+      <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

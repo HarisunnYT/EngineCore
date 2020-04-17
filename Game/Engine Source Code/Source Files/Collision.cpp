@@ -109,7 +109,7 @@ bool Collision::CheckCollision(Collider* collider, Hit& hit)
 					Transform* thisTransform = &collider->entity->GetComponent<Transform>();
 					Rigidbody* thisRigidbody = &collider->entity->GetComponent<Rigidbody>();
 
-					Vector3 pos = thisTransform->GetPosition();
+					Vector3 pos = thisTransform->position;
 					float push = 0.0;//thisRigidbody->mass;
 
 					if (intersectX < 0.0 && intersectY < 0.0f)
@@ -131,11 +131,11 @@ bool Collision::CheckCollision(Collider* collider, Hit& hit)
 									pushedX = true;
 									if (deltaX > 0.0f)
 									{
-										thisTransform->SetPosition(Vector3(pos.x + intersectX, pos.y, pos.z));
+										thisTransform->position = Vector3(pos.x + intersectX, pos.y, pos.z);
 									}
 									else
 									{
-										thisTransform->SetPosition(Vector3(pos.x - intersectX, pos.y, pos.z));
+										thisTransform->position = Vector3(pos.x - intersectX, pos.y, pos.z);
 									}
 								}
 							}
@@ -147,11 +147,11 @@ bool Collision::CheckCollision(Collider* collider, Hit& hit)
 									pushedY = true;
 									if (deltaY > 0.0f)
 									{
-										thisTransform->SetPosition(Vector3(pos.x, pos.y + intersectY, pos.z));
+										thisTransform->position = Vector3(pos.x, pos.y + intersectY, pos.z);
 									}
 									else
 									{
-										thisTransform->SetPosition(Vector3(pos.x, pos.y - intersectY, pos.z));
+										thisTransform->position = Vector3(pos.x, pos.y - intersectY, pos.z);
 									}
 								}
 							}

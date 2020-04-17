@@ -36,8 +36,8 @@ void SpriteRenderer::Draw()
 	if (!enabled)
 		return;
 
-	destinationRect.x = static_cast<int>(transform->GetPosition().x);
-	destinationRect.y = static_cast<int>(transform->GetPosition().y);
+	destinationRect.x = static_cast<int>(transform->position.x);
+	destinationRect.y = static_cast<int>(transform->position.y);
 
 	destinationRect.w = static_cast<int>(spriteSize.x * transform->scale.x);
 	destinationRect.h = static_cast<int>(spriteSize.y * transform->scale.y);

@@ -5,10 +5,6 @@
 #include "InputSystem.h"
 #include "Camera.h"
 
-#include "3rdPartyLibs/Includes/GL/glew.h"
-#include "SDL.h"
-#include "SDL_opengl.h"
-
 #include <iostream>
 
 SDL_GLContext EngineCore::mainContext;
@@ -44,10 +40,11 @@ void EngineCore::Init(const char* title, int xpos, int ypos, bool fullscreen)
 
 	window = SDL_CreateWindow(title, xpos, ypos, static_cast<int>(screenSize.x), static_cast<int>(screenSize.y), SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 	mainContext = SDL_GL_CreateContext(window);
+	Renderer = SDL_CreateRenderer(window, -1, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0, (GLdouble)screenSize.x, (GLdouble)screenSize.y, 0, -1, 1);
+	gluPerspective(45.0f, (GLfloat)screenSize.x / (GLfloat)screenSize.y, 0.1f, 500.0f);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -100,28 +97,31 @@ void EngineCore::Update()
 void EngineCore::Render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//SDL_RenderClear(Renderer);
 
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
-	//glTranslatef(100.5f, 0.0f, 0.0f);
+	glViewport(0, 0, (GLint)EngineCore::screenSize.x, (GLint)EngineCore::screenSize.y);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 
-	//glBegin(GL_TRIANGLES);
-	//
-	//glVertex3f(0.0f, 121.0f, 0.0f);
-	//glVertex3f(-121.0f, -121.0f, 0.0f);
-	//glVertex3f(121.0f, -121.0f, 0.0f);
-	//glEnd();
+	gluPerspective(45.0f, (GLfloat)EngineCore::screenSize.x / (GLfloat)EngineCore::screenSize.y, 0.1f, 200.0f);
+
+	glEnable(GL_BLEND);
 
 	game->Render();
 	Ecs->Draw();
 	Ecs->DebugDraw();
 	Collision::DebugDraw();
 
+	//SDL_RenderPresent(Renderer);
 	SDL_GL_SwapWindow(window);
 }
 
 void EngineCore::Clean()
 {
+	delete camera;
+	delete Ecs;
+	delete game;
+
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();

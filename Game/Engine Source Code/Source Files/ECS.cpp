@@ -26,7 +26,7 @@ struct compare_z_depth
 {
 	inline bool operator() (Entity *a, Entity *b)
 	{
-		return a->transform->GetPosition().z < b->transform->GetPosition().z;
+		return a->transform->position.z < b->transform->position.z;
 	}
 };
 

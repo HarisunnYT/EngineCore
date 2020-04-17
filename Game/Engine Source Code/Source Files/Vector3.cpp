@@ -140,7 +140,7 @@ Vector3 Vector3::Normalised()
 
 float Vector3::Magnitude()
 {
-	return sqrt((x * x) + (y * y) + (z * z));
+	return sqrt(x * x + y * y + z * z);
 }
 
 float Vector3::Dot(Vector3& vec)

@@ -11,5 +11,6 @@
 #include "Tile.h"
 #include "AudioListener.h"
 #include "AudioSource.h"
+#include "MeshRenderer.h"
 
 #endif

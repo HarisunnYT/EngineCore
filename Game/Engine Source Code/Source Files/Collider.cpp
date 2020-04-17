@@ -35,7 +35,7 @@ void Collider::Update()
 {
 	UpdateCollider();
 
-	previousPosition = transform->GetPosition();
+	previousPosition = transform->position;
 }
 
 void Collider::DebugDraw()
@@ -153,6 +153,6 @@ void Collider::UpdateCollider()
 	collider.w = static_cast<int>(size.x * transform->scale.x);
 	collider.h = static_cast<int>(size.y * transform->scale.y);
 
-	collider.x = static_cast<int>(transform->GetPosition().x + offset.x);
-	collider.y = static_cast<int>(transform->GetPosition().y + offset.y);
+	collider.x = static_cast<int>(transform->position.x + offset.x);
+	collider.y = static_cast<int>(transform->position.y + offset.y);
 }
