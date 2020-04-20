@@ -2,15 +2,18 @@
 #define VECTOR3_H
 
 #include "Point.h"
+#include "Matrix4x4.h"
 
 #include <iostream>
 #include <string>
 
+class Matrix4x4;
 class Vector3 : public Point
 {
 public:
 
 	Vector3(float X = 0, float Y = 0, float Z = 0);
+	Vector3(Matrix4x4 mat);
 
 	Vector3& Equals(const Vector3& p);
 	Vector3& Add(const Vector3& p);
@@ -26,11 +29,16 @@ public:
 	Vector3 operator -(const Vector3& p);
 	Vector3& operator -=(const Vector3& p);
 
+	Vector3 operator *(const Vector3& p);
+	Vector3& operator *=(const Vector3& p);
+
 	Vector3 operator *(float multiplier);
 	Vector3& operator *=(float multiplier);
 
 	Vector3 operator /(float multiplier);
 	Vector3& operator /=(float multiplier);
+
+	Vector3& Normalise();
 
 	bool operator ==(const Vector3& p);
 	bool operator !=(const Vector3& p);

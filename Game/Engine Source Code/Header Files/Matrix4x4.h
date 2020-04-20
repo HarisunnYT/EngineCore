@@ -10,7 +10,7 @@ class Matrix4x4
 {
 public:
 
-	Matrix4x4() = default;
+	Matrix4x4();
 	Matrix4x4(float mat[4][4]);
 
 	void SetIdentity();
@@ -18,7 +18,16 @@ public:
 	void SetScreenSpace(float nearPlane, float farPlane);
 
 	Matrix4x4 operator*(const Matrix4x4& mat);
-	Matrix4x4 operator*=(const Matrix4x4& mat);
+	Matrix4x4& operator*=(const Matrix4x4& mat);
+
+	Matrix4x4 operator+(const Matrix4x4& mat);
+	Matrix4x4& operator+=(const Matrix4x4& mat);
+
+	Matrix4x4 operator-(const Matrix4x4& mat);
+	Matrix4x4& operator-=(const Matrix4x4& mat);
+
+	static Matrix4x4 Rotate(float angle, Vector3 direction);
+	static Matrix4x4 One();
 
 	std::string ToString();
 

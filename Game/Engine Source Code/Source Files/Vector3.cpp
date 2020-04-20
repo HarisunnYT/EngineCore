@@ -6,6 +6,13 @@ Vector3::Vector3(float X, float Y, float Z) : Point(X, Y, Z)
 	
 }
 
+Vector3::Vector3(Matrix4x4 mat)
+{
+	x = mat.matrix[0][0];
+	y = mat.matrix[1][1];
+	z = mat.matrix[2][2];
+}
+
 Vector3& Vector3::Equals(const Vector3& p)
 {
 	x = p.x;
@@ -86,6 +93,25 @@ Vector3& Vector3::operator-=(const Vector3& p)
 	return this->Subtract(p);
 }
 
+Vector3 Vector3::operator*(const Vector3& p)
+{
+	Vector3 vec;
+	vec.x = x * p.x;
+	vec.y = y * p.y;
+	vec.z = z * p.z;
+
+	return vec;
+}
+
+Vector3& Vector3::operator*=(const Vector3& p)
+{
+	x *= p.x;
+	y *= p.y;
+	z *= p.z;
+
+	return *this;
+}
+
 Vector3 Vector3::operator*(float multiplier)
 {
 	Vector3 vec;
@@ -114,6 +140,17 @@ Vector3 Vector3::operator/(float multiplier)
 Vector3& Vector3::operator/=(float multiplier)
 {
 	return this->Divide(multiplier);
+}
+
+Vector3& Vector3::Normalise()
+{
+	float mag = Magnitude();
+
+	x /= Magnitude();
+	y /= Magnitude();
+	z /= Magnitude();
+
+	return *this;
 }
 
 bool Vector3::operator==(const Vector3& p)

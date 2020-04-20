@@ -18,7 +18,7 @@ void Camera::Update()
 		glm::vec3 toRotateAround = glm::cross(v, glm::vec3(0, 1, 0));
 		glm::mat4 rotator = glm::rotate(-mouseDelta.x / rotationDamper, glm::vec3(0, 1, 0)) *
 							glm::rotate(-mouseDelta.y / rotationDamper, toRotateAround);
-		v = glm::mat3(rotator) * v;
+		v = glm::mat3(rotator) * glm::vec3(1, 1, 1);
 
 		if (v.y > 90.0f)
 			v.y = 90.0f;

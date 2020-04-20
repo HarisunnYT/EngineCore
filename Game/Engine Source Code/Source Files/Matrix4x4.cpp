@@ -4,6 +4,13 @@
 
 #include <memory>
 
+Matrix4x4::Matrix4x4()
+{
+	for (int x = 0; x <= 3; x++)
+		for (int y = 0; y <= 3; y++)
+			matrix[y][x] = 0;
+}
+
 Matrix4x4::Matrix4x4(float mat[4][4])
 {
 	matrix[0][0] = mat[0][0];
@@ -58,28 +65,135 @@ void Matrix4x4::SetScreenSpace(float nearPlane, float farPlane)
 
 Matrix4x4 Matrix4x4::operator*(const Matrix4x4& mat)
 {
-	Matrix4x4 newMat;
-	newMat.matrix[0][0] = matrix[0][0] * mat.matrix[0][0] + matrix[0][1] * mat.matrix[1][0] + matrix[0][2] * mat.matrix[2][0] + matrix[0][3] * mat.matrix[3][0];
-	newMat.matrix[0][1] = matrix[0][0] * mat.matrix[0][1] + matrix[0][1] * mat.matrix[1][1] + matrix[0][2] * mat.matrix[2][1] + matrix[0][3] * mat.matrix[3][1];
-	newMat.matrix[0][2] = matrix[0][0] * mat.matrix[0][2] + matrix[0][1] * mat.matrix[1][2] + matrix[0][2] * mat.matrix[2][2] + matrix[0][3] * mat.matrix[3][2];
-	newMat.matrix[0][3] = matrix[0][0] * mat.matrix[0][3] + matrix[0][1] * mat.matrix[1][3] + matrix[0][2] * mat.matrix[2][3] + matrix[0][3] * mat.matrix[3][3];
+	Matrix4x4 newMat = Matrix4x4();
 
-	newMat.matrix[1][0] = matrix[1][0] * mat.matrix[0][0] + matrix[1][1] * mat.matrix[1][0] + matrix[1][2] * mat.matrix[2][0] + matrix[1][3] * mat.matrix[3][0];
-	newMat.matrix[1][1] = matrix[1][0] * mat.matrix[0][1] + matrix[1][1] * mat.matrix[1][1] + matrix[1][2] * mat.matrix[2][1] + matrix[1][3] * mat.matrix[3][1];
-	newMat.matrix[1][2] = matrix[1][0] * mat.matrix[0][2] + matrix[1][1] * mat.matrix[1][2] + matrix[1][2] * mat.matrix[2][2] + matrix[1][3] * mat.matrix[3][2];
-	newMat.matrix[1][3] = matrix[1][0] * mat.matrix[0][3] + matrix[1][1] * mat.matrix[1][3] + matrix[1][2] * mat.matrix[2][3] + matrix[1][3] * mat.matrix[3][3];
+	int aX = 0, bX = 0, aY = 0, bY = 0;
+	int newX = 0, newY = 0;
 
-	newMat.matrix[2][0] = matrix[2][0] * mat.matrix[0][0] + matrix[2][1] * mat.matrix[1][0] + matrix[2][2] * mat.matrix[2][0] + matrix[2][3] * mat.matrix[3][0];
-	newMat.matrix[2][1] = matrix[2][0] * mat.matrix[0][1] + matrix[2][1] * mat.matrix[1][1] + matrix[2][2] * mat.matrix[2][1] + matrix[2][3] * mat.matrix[3][1];
-	newMat.matrix[2][2] = matrix[2][0] * mat.matrix[0][2] + matrix[2][1] * mat.matrix[1][2] + matrix[2][2] * mat.matrix[2][2] + matrix[2][3] * mat.matrix[3][2];
-	newMat.matrix[2][3] = matrix[2][0] * mat.matrix[0][3] + matrix[2][1] * mat.matrix[1][3] + matrix[2][2] * mat.matrix[2][3] + matrix[2][3] * mat.matrix[3][3];
+	while (true)
+	{
+		newMat.matrix[newY][newX] += matrix[aY][aX] * mat.matrix[bY][bX];
 
-	newMat.matrix[3][0] = matrix[3][0] * mat.matrix[0][0] + matrix[3][1] * mat.matrix[1][0] + matrix[3][2] * mat.matrix[2][0] + matrix[3][3] * mat.matrix[3][0];
-	newMat.matrix[3][1] = matrix[3][0] * mat.matrix[0][1] + matrix[3][1] * mat.matrix[1][1] + matrix[3][2] * mat.matrix[2][1] + matrix[3][3] * mat.matrix[3][1];
-	newMat.matrix[3][2] = matrix[3][0] * mat.matrix[0][2] + matrix[3][1] * mat.matrix[1][2] + matrix[3][2] * mat.matrix[2][2] + matrix[3][3] * mat.matrix[3][2];
-	newMat.matrix[3][3] = matrix[3][0] * mat.matrix[0][3] + matrix[3][1] * mat.matrix[1][3] + matrix[3][2] * mat.matrix[2][3] + matrix[3][3] * mat.matrix[3][3];
+		if (aX == 3)
+		{
+			newX++;
+
+			aX = 0;
+			bY = 0;
+
+			if (bX == 3)
+			{
+				if (bY == 3)
+				{
+					newX = 0;
+					newY++;
+				}
+
+				bX = 0;
+				bY = 0;
+
+				aY++;
+			}
+			else
+			{
+				bX++;
+			}
+
+			if (aY == 4)
+			{
+				break;
+			}
+		}
+		else
+		{
+			aX++;
+			bY++;
+		}
+	}
 
 	return newMat;
+}
+
+Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& mat)
+{
+	*this = *this * mat;
+	return *this;
+}
+
+Matrix4x4 Matrix4x4::operator+(const Matrix4x4& mat)
+{
+	Matrix4x4 newMat = Matrix4x4();
+	for (int x = 0; x <= 3; x++)
+	{
+		for (int y = 0; y <= 3; y++)
+		{
+			newMat.matrix[y][x] = matrix[y][x] + mat.matrix[y][x];
+		}
+	}
+
+	return newMat;
+}
+
+Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& mat)
+{
+	*this = *this + mat;
+	return *this;
+}
+
+Matrix4x4 Matrix4x4::operator-(const Matrix4x4& mat)
+{
+	Matrix4x4 newMat = Matrix4x4();
+	for (int x = 0; x <= 3; x++)
+	{
+		for (int y = 0; y <= 3; y++)
+		{
+			newMat.matrix[y][x] = matrix[y][x] - mat.matrix[y][x];
+		}
+	}
+
+	return newMat;
+}
+
+Matrix4x4& Matrix4x4::operator-=(const Matrix4x4& mat)
+{
+	*this = *this - mat;
+	return *this;
+}
+
+Matrix4x4 Matrix4x4::Rotate(float angle, Vector3 direction)
+{
+	const float a = angle;
+	const float c = cos(a);
+	const float s = sin(a);
+
+	direction.Normalise();
+
+	Vector3 temp = Vector3((1 - c) * direction.x, (1 - c) * direction.y, (1 - c) * direction.z);
+	Matrix4x4 rot = Matrix4x4();
+
+	rot.matrix[0][0] = c + temp.x * direction.x;
+	rot.matrix[0][1] = 0 + temp.x * direction.y + s * direction.z;
+	rot.matrix[0][2] = 0 + temp.x * direction.z - s * direction.y;
+	   										 
+	rot.matrix[1][0] = 0 + temp.y * direction.x - s * direction.z;
+	rot.matrix[1][1] = c + temp.y * direction.y;
+	rot.matrix[1][2] = 0 + temp.y * direction.z + s * direction.x;
+	   										 
+	rot.matrix[2][0] = 0 + temp.z * direction.x + s * direction.y;
+	rot.matrix[2][1] = 0 + temp.z * direction.y - s * direction.x;
+	rot.matrix[2][2] = c + temp.z * direction.z;
+
+	return rot;
+}
+
+Matrix4x4 Matrix4x4::One()
+{
+	Matrix4x4 mat = Matrix4x4();
+	for (int x = 0; x <= 3; x++)
+		for (int y = 0; y <= 3; y++)
+			mat.matrix[y][x] = 1;
+
+	return mat;
 }
 
 std::string Matrix4x4::ToString()
