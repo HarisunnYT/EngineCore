@@ -11,12 +11,15 @@
 #include "Texture.h"
 #include "Light.h"
 
-#include "Plane.h"
+#include "Cube.h"
+#include "Model.h"
+
+#include "3rdPartyLibs/Includes/GLM/gtx/transform.hpp"
 
 #include <iostream>
 
 Entity* light;
-Entity* plane;
+Entity* cube;
 
 Game::Game()
 {
@@ -25,10 +28,9 @@ Game::Game()
 
 	glEnable(GL_LIGHTING);
 
-	plane = &EngineCore::Ecs->AddEntity();
-	plane->AddComponent<MeshRenderer>(new Plane());
-	plane->transform->position.y = -200;
-	plane->transform->scale = Vector3::One() * 10;
+	cube = &EngineCore::Ecs->AddEntity();
+	cube->AddComponent<MeshRenderer>(new Cube());
+	cube->transform->position.z = 25;
 
 	light = &EngineCore::Ecs->AddEntity();
 	light->AddComponent<Light>(LIGHT_TYPE::LIGHT_SPOT);
@@ -36,6 +38,29 @@ Game::Game()
 	light->transform->position = Vector3(0.0f, 5.0f, 0.0f);
 
 	EngineCore::camera->transform->eulerRotation = Vector3(0, 0, 1);
+
+	float m1[4][4] =
+	{
+		{ 10.0f, 3.0f, 8.0f, 3.0f },
+		{ 5.0f, 7.0f, 3.0f, 7.0f },
+		{ 4.0f, 7.0f, 3.0f, 1.0f },
+		{ 0.0f, 4.0f, 9.0f, 7.0f }
+	};
+
+	float m2[4][4] =
+	{
+		{ 4.0f, 6.0f, 3.0f, 4.0f },
+		{ 2.0f, 4.0f, 7.0f, 6.0f },
+		{ 5.0f, 7.0f, 3.0f, 4.0f },
+		{ 3.0f, 4.0f, 6.0f, 7.0f }
+	};
+
+	Matrix4x4 mat1 = Matrix4x4(m1);
+	Matrix4x4 mat2 = Matrix4x4(m2);
+
+	Matrix4x4 result = mat1 * mat2;
+
+	std::cout << result.ToString() << std::endl;
 }
 
 Game::~Game()

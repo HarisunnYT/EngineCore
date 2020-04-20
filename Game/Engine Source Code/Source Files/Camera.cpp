@@ -2,6 +2,7 @@
 #include "InputSystem.h"
 
 #include "3rdPartyLibs/Includes/GLM/gtx/transform.hpp"
+#include <math.h>
 
 Camera::Camera()
 {
@@ -18,6 +19,11 @@ void Camera::Update()
 		glm::mat4 rotator = glm::rotate(-mouseDelta.x / rotationDamper, glm::vec3(0, 1, 0)) *
 							glm::rotate(-mouseDelta.y / rotationDamper, toRotateAround);
 		v = glm::mat3(rotator) * v;
+
+		if (v.y > 90.0f)
+			v.y = 90.0f;
+		if (v.y < -90.0f)
+			v.y = -90.0f;
 
 		EngineCore::camera->transform->eulerRotation = Vector3(v.x, v.y, v.z);
 	}

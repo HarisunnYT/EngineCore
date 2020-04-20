@@ -56,9 +56,14 @@ Vector3& Vector3::operator=(const Vector3& p)
 	return this->Equals(p);
 }
 
-Vector3& Vector3::operator+(const Vector3 &p)
+Vector3 Vector3::operator+(const Vector3 &p)
 {
-	return this->Add(p);
+	Vector3 vec;
+	vec.x = x + p.x;
+	vec.y = y + p.y;
+	vec.z = z + p.z;
+
+	return vec;
 }
 
 Vector3& Vector3::operator+=(const Vector3& p)
@@ -66,9 +71,14 @@ Vector3& Vector3::operator+=(const Vector3& p)
 	return this->Add(p);
 }
 
-Vector3& Vector3::operator-(const Vector3& p)
+Vector3 Vector3::operator-(const Vector3& p)
 {
-	return this->Subtract(p);
+	Vector3 vec;
+	vec.x = x - p.x;
+	vec.y = y - p.y;
+	vec.z = z - p.z;
+
+	return vec;
 }
 
 Vector3& Vector3::operator-=(const Vector3& p)
@@ -76,9 +86,14 @@ Vector3& Vector3::operator-=(const Vector3& p)
 	return this->Subtract(p);
 }
 
-Vector3& Vector3::operator*(float multiplier)
+Vector3 Vector3::operator*(float multiplier)
 {
-	return this->Multiply(multiplier);
+	Vector3 vec;
+	vec.x = x * multiplier;
+	vec.y = y * multiplier;
+	vec.z = z * multiplier;
+
+	return vec;
 }
 
 Vector3& Vector3::operator*=(float multiplier)
@@ -86,9 +101,14 @@ Vector3& Vector3::operator*=(float multiplier)
 	return this->Multiply(multiplier);
 }
 
-Vector3& Vector3::operator/(float multiplier)
+Vector3 Vector3::operator/(float multiplier)
 {
-	return this->Divide(multiplier);
+	Vector3 vec;
+	vec.x = x / multiplier;
+	vec.y = y / multiplier;
+	vec.z = z / multiplier;
+
+	return vec;
 }
 
 Vector3& Vector3::operator/=(float multiplier)

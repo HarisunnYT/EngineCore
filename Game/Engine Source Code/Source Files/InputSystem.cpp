@@ -27,5 +27,5 @@ void InputSystem::Update()
 	SDL_Point p;
 	SDL_GetMouseState(&p.x, &p.y);
 
-	MousePosition = Vector2(p.x, p.y);
+	MousePosition = Vector2((float)p.x, (float)p.y);
 }

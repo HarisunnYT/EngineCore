@@ -20,16 +20,16 @@ public:
 
 	Vector3& operator =(const Vector3& p);
 
-	Vector3& operator +(const Vector3 &p);
+	Vector3 operator +(const Vector3 &p);
 	Vector3& operator +=(const Vector3& p);
 
-	Vector3& operator -(const Vector3& p);
+	Vector3 operator -(const Vector3& p);
 	Vector3& operator -=(const Vector3& p);
 
-	Vector3& operator *(float multiplier);
+	Vector3 operator *(float multiplier);
 	Vector3& operator *=(float multiplier);
 
-	Vector3& operator /(float multiplier);
+	Vector3 operator /(float multiplier);
 	Vector3& operator /=(float multiplier);
 
 	bool operator ==(const Vector3& p);
