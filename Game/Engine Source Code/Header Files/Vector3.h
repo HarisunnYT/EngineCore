@@ -29,8 +29,6 @@ public:
 	Vector3& operator *(float multiplier);
 	Vector3& operator *=(float multiplier);
 
-	Vector3 operator *(const Vector3& vec);
-
 	Vector3& operator /(float multiplier);
 	Vector3& operator /=(float multiplier);
 
@@ -38,9 +36,14 @@ public:
 	bool operator !=(const Vector3& p);
 
 	static Vector3 Zero();
+	static Vector3 One();
 	static Vector3 Lerp(const Vector3& vecA, const Vector3& vecB, float time);
 
+	static Vector3 Up();
+	static Vector3 Right();
+
 	Vector3 Normalised();
+	Vector3 Cross(const Vector3& vec);
 
 	float Magnitude();
 	float Dot(Vector3& vec);

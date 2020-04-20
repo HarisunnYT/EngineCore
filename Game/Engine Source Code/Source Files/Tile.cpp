@@ -22,7 +22,7 @@ Tile::~Tile()
 void Tile::ManualConstruction(Vector3 pos, float s)
 {
 	startingPosition = pos;
-	startingScale = Vector2(s, s);
+	startingScale = Vector3(s, s, s);
 
 	SetRects();
 }

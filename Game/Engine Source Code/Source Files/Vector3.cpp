@@ -86,13 +86,6 @@ Vector3& Vector3::operator*=(float multiplier)
 	return this->Multiply(multiplier);
 }
 
-Vector3 Vector3::operator*(const Vector3& vec)
-{
-	return Vector3(y * vec.z - z * vec.y,
-				   z * vec.x - x * vec.z,
-		           x * vec.y - y * vec.x);
-}
-
 Vector3& Vector3::operator/(float multiplier)
 {
 	return this->Divide(multiplier);
@@ -119,6 +112,11 @@ Vector3 Vector3::Zero()
 	return Vector3(0, 0, 0);
 }
 
+Vector3 Vector3::One()
+{
+	return Vector3(1, 1, 1);
+}
+
 Vector3 Vector3::Lerp(const Vector3& vecA, const Vector3& vecB, float time)
 {
 	float x = (vecA.x * (1.0f - time)) + (vecB.x * time);
@@ -126,6 +124,16 @@ Vector3 Vector3::Lerp(const Vector3& vecA, const Vector3& vecB, float time)
 	float z = (vecA.z * (1.0f - time)) + (vecB.z * time);
 
 	return Vector3(x, y, z);
+}
+
+Vector3 Vector3::Up()
+{
+	return Vector3(0, 1, 0);
+}
+
+Vector3 Vector3::Right()
+{
+	return Vector3(1, 0, 0);
 }
 
 Vector3 Vector3::Normalised()
@@ -136,6 +144,13 @@ Vector3 Vector3::Normalised()
 	vec.z = z / Magnitude();
 
 	return vec;
+}
+
+Vector3 Vector3::Cross(const Vector3& vec)
+{
+	return Vector3(y * vec.z - z * vec.y,
+				   z * vec.x - x * vec.z,
+		           x * vec.y - y * vec.x);
 }
 
 float Vector3::Magnitude()

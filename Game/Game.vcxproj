@@ -187,6 +187,7 @@
     <ClCompile Include="Engine Source Code\Source Files\Model.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Particle.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Physics.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Plane.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Point.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Rigidbody.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\SpriteRenderer.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Engine Source Code\Header Files\Model.h" />
     <ClInclude Include="Engine Source Code\Header Files\Particle.h" />
     <ClInclude Include="Engine Source Code\Header Files\Physics.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Plane.h" />
     <ClInclude Include="Engine Source Code\Header Files\Point.h" />
     <ClInclude Include="Engine Source Code\Header Files\Rigidbody.h" />
     <ClInclude Include="Engine Source Code\Header Files\SecondaryComponents.h" />

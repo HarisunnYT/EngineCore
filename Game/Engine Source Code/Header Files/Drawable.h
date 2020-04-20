@@ -5,6 +5,9 @@
 
 #include "EngineCore.h"
 
+#include "MeshRenderer.h"
+#include "Texture.h"
+
 class MeshRenderer;
 class Drawable
 {

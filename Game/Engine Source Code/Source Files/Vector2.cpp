@@ -53,6 +53,11 @@ Vector2& Vector2::operator=(const Vector2& p)
 	return this->Equals(p);
 }
 
+bool Vector2::operator==(const Vector2& p)
+{
+	return x == p.x && y == p.y;
+}
+
 Vector2 Vector2::operator+(const Vector2& p)
 {
 	return Vector2(x + p.x, y + p.y);

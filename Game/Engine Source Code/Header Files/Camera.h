@@ -6,6 +6,8 @@
 #include "Entity.h"
 #include "EngineCore.h"
 
+#include "Matrix4x4.h"
+
 class Entity;
 class Transform;
 class Camera : public Entity
@@ -14,13 +16,14 @@ public:
 
 	Camera();
 
+	void Update() override;
+	void Draw() override;
+
 	bool InsideCameraView(SDL_Rect* rect);
 
 	SDL_Rect offset;
 
 private:
-
-	Transform*	transform;
 
 	Vector2			screenTopLeft = Vector2(0, 0);
 	Vector2			screenBottomLeft = Vector2(0, EngineCore::screenSize.y);
@@ -31,6 +34,10 @@ private:
 	Vector2			inputBottomLeft;
 	Vector2			inputTopRight;
 	Vector2			inputBottomRight;
+
+	Vector2 previousMouseHeldPosition;
+	float movementSpeed = 0.1f;
+	float rotationDamper = 500.0f;
 
 };
 

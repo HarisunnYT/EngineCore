@@ -12,8 +12,9 @@ public:
 	Transform();
 	Transform(Vector3 pos);
 
-	Vector2 scale;
+	Vector3 scale;
 	Vector3	position;
+	Vector3 eulerRotation;
 
 	std::string Parse() override;
 	static bool TryParse(std::string value, Entity* entity);

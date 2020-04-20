@@ -46,7 +46,7 @@ private:
 	SDL_Rect		destinationRect;
 
 	Vector3			startingPosition;
-	Vector2			startingScale;
+	Vector3			startingScale;
 	Vector2			source;
 	Vector2			size;
 

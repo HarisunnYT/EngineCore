@@ -5,7 +5,7 @@ std::string Transform::componentName = "transform";
 
 Transform::Transform()
 {
-	scale = Vector2(1, 1);
+	scale = Vector3(1, 1, 1);
 }
 
 Transform::Transform(Vector3 pos) : Transform()
@@ -40,7 +40,7 @@ bool Transform::TryParse(std::string value, Entity* entity)
 	{
 		Vector3 vec = Vector3::FromString(inPos);
 		entity->GetComponent<Transform>().position = vec;
-		entity->GetComponent<Transform>().scale = Vector2::FromString(inScale);
+		entity->GetComponent<Transform>().scale = Vector3::FromString(inScale);
 
 		return true;
 	}

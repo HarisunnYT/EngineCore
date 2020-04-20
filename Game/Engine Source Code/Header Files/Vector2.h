@@ -22,6 +22,7 @@ public:
 	Vector2& Divide(float value);
 
 	Vector2& operator =(const Vector2& p);
+	bool operator ==(const Vector2& p);
 
 	Vector2 operator +(const Vector2& p);
 	Vector2& operator +=(const Vector2& p);

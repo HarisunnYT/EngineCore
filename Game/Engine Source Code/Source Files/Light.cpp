@@ -51,7 +51,7 @@ void Light::Init()
 		SetDiffuse(1, 1, 1, 1);
 		SetSpecular(1, 1, 1, 1);
 
-		SetSpotDirection(Vector3(0, -1, 0));
+		entity->transform->eulerRotation = Vector3(0, -1, 0);
 		SetCutoff(45.0f);
 		SetExponent(12.0f);
 	}
@@ -67,6 +67,10 @@ void Light::Update()
 	position[0] = entity->transform->position.x;
 	position[1] = entity->transform->position.y;
 	position[2] = entity->transform->position.z;
+
+	spotdirection[0] = entity->transform->eulerRotation.x;
+	spotdirection[1] = entity->transform->eulerRotation.y;
+	spotdirection[2] = entity->transform->eulerRotation.z;
 
 	glLightfv(lightNum, GL_POSITION, position);
 	glLightfv(lightNum, GL_SPOT_DIRECTION, spotdirection);
@@ -132,15 +136,6 @@ void Light::SetSpecular(float r, float g, float b, float a)
 	specularity[3] = a;
 
 	glLightfv(lightNum, GL_SPECULAR, specularity);
-}
-
-void Light::SetSpotDirection(Vector3 dir)
-{
-	spotdirection[0] = dir.x;
-	spotdirection[1] = dir.y;
-	spotdirection[2] = dir.z;
-
-	glLightfv(lightNum, GL_SPOT_DIRECTION, spotdirection);
 }
 
 void Light::SetCutoff(float value)

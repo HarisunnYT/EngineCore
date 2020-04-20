@@ -4,6 +4,7 @@
 #include "Components.h"
 #include "InputSystem.h"
 #include "Camera.h"
+#include "Light.h"
 
 #include <iostream>
 
@@ -54,6 +55,7 @@ void EngineCore::Init(const char* title, int xpos, int ypos, bool fullscreen)
 	isRunning = true;
 
 	Collision::Init();
+	Light::StaticInitialise();
 
 	camera = new Camera();
 	Ecs = new ECS();
@@ -107,7 +109,7 @@ void EngineCore::Render()
 
 	glEnable(GL_BLEND);
 
-	game->Render();
+	game->Draw();
 	Ecs->Draw();
 	Ecs->DebugDraw();
 	Collision::DebugDraw();

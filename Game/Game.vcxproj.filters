@@ -147,6 +147,9 @@
     <ClCompile Include="Engine Source Code\Source Files\Light.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Plane.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine Source Code\Header Files\Collision.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\Light.h">
       <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Plane.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

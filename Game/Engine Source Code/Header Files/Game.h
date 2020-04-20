@@ -14,7 +14,7 @@ public:
 
 	void Update();
 	void LateUpdate();
-	void Render();
+	void Draw();
 	void Physics();
 
 private:

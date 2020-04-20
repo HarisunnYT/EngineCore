@@ -33,7 +33,6 @@ public:
 	void SetDiffuse(float r, float g, float b, float a);
 	void SetSpecular(float r, float g, float b, float a);
 
-	void SetSpotDirection(Vector3 dir);
 	void SetCutoff(float value);
 	void SetExponent(float value);
 

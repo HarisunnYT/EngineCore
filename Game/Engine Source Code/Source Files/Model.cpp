@@ -364,7 +364,7 @@ bool Model::LoadObject(string fn)
 			{
 				Vector3 vector1 = ((*newFace->verticies[0]) - (*newFace->verticies[1])).Normalised();
 				Vector3 vector2 = ((*newFace->verticies[0]) - (*newFace->verticies[2])).Normalised();
-				newFace->faceNormal = vector1 * vector2;
+				newFace->faceNormal = vector1.Cross(vector2);
 			}
 		}
 	}

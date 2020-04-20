@@ -13,11 +13,13 @@ public:
 
 	static bool KeyHeld(Uint8 SDL_SCANCODE);
 
-	static bool Mouse(int button);
+	static bool MousePressed(Uint8 button);
+	static bool MouseReleased(Uint8 button);
+	static bool MouseHeld(Uint8 button);
 
 	static void Update();
 
-	static SDL_Point MousePosition;
+	static Vector2 MousePosition;
 
 };
 
