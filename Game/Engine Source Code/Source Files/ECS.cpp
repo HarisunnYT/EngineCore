@@ -11,6 +11,17 @@ ECS::ECS()
 	entities = std::list<Entity*>();
 }
 
+ECS::~ECS()
+{
+	for (auto& e : entities)
+	{
+		if (e != nullptr)
+		{
+			e->Destroy();
+		}
+	}
+}
+
 void ECS::Update()
 {
 	for (auto& e : entities)
@@ -103,15 +114,9 @@ void ECS::SubscribeEntityStateChange(Entity* entity, bool state)
 Entity& ECS::AddEntity()
 {
 	Entity* e = new Entity();
-	return AddEntity(e);
-}
+	entities.emplace_back(std::move(e));
 
-Entity& ECS::AddEntity(Entity* entity)
-{
-	Entity* uPtr{ entity };
-	entities.emplace_back(std::move(uPtr));
-
-	return *entity;
+	return *e;
 }
 
 Entity& ECS::AddEntity(const char* path)

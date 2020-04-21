@@ -51,6 +51,12 @@ public:
 
 private:
 
+	void EstablishProjectionMatrix();
+	void SetOrthographic();
+
+	float nearClippingPlane = 0.1f;
+	float farClippingPlane = 500.0f;
+
 	SDL_Window*				window;
 };
 

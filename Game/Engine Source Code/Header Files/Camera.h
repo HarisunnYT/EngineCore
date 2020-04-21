@@ -3,18 +3,19 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Entity.h"
 #include "EngineCore.h"
 
 #include "Matrix4x4.h"
 
-class Entity;
+class Component;
 class Transform;
-class Camera : public Entity
+class Camera : public Component
 {
 public:
 
 	Camera();
+
+	void ViewUpdate();
 
 	void Update() override;
 	void Draw() override;

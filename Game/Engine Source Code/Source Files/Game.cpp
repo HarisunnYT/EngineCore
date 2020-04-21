@@ -19,25 +19,30 @@
 #include <iostream>
 
 Entity* light;
-Entity* cube;
+Entity* model;
 
 Game::Game()
 {
 	EngineCore::isDebug = false;
 	Collision::drawGrid = false;
 
-	glEnable(GL_LIGHTING);
+	//model = &EngineCore::Ecs->AddEntity();
+	//model->AddComponent<MeshRenderer>(new Model("Assets/Titan.obj"));
+	//model->transform->scale = Vector3::One() * 0.01f;
 
-	cube = &EngineCore::Ecs->AddEntity();
-	cube->AddComponent<MeshRenderer>(new Cube());
-	cube->transform->position.z = 25;
+	//light = &EngineCore::Ecs->AddEntity();
+	//light->AddComponent<Light>(LIGHT_TYPE::LIGHT_SPOT);
+	//light->GetComponent<Light>().SetDiffuse(2.0f, 2.0f, 2.0f, 1.0f);
+	//light->transform->position = Vector3(0.0f, 30.0f, 0.0f);
 
-	light = &EngineCore::Ecs->AddEntity();
-	light->AddComponent<Light>(LIGHT_TYPE::LIGHT_SPOT);
-	light->GetComponent<Light>().SetDiffuse(2.0f, 2.0f, 2.0f, 1.0f);
-	light->transform->position = Vector3(0.0f, 5.0f, 0.0f);
+	for (int i = 0; i < 10; i++)
+	{
+		//Entity* e = &EngineCore::Ecs->AddEntity();
+		//e->AddComponent<MeshRenderer>(new Cube());
+		//e->transform->position.x = i * 10;
+	}
 
-	EngineCore::camera->transform->eulerRotation = Vector3(0, 0, 1);
+	//EngineCore::camera->entity->transform->eulerRotation = Vector3(0, 0, 1);
 }
 
 Game::~Game()

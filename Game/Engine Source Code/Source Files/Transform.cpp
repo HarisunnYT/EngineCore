@@ -1,5 +1,4 @@
 #include "Transform.h"
-#include "Camera.h"
 
 std::string Transform::componentName = "transform";
 

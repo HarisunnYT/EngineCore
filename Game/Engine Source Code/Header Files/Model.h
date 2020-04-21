@@ -3,6 +3,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "Drawable.h"
 #include "Vector3.h"
 #include "Texture.h"
 
@@ -51,6 +52,10 @@ struct Material
 		shininessMap = nullptr;
 		transparencyMap = nullptr;
 		bumpMap = nullptr;
+
+		shininess = 2.0f;
+		alpha = 1.0f;
+		illum = 1.0f;
 	}
 };
 
@@ -91,14 +96,21 @@ struct GroupObject
 	string			groupName;
 };
 
-class Model
+class Drawable;
+class Model : public Drawable
 {
 public:
 
 	Model(string fileName = "");
 	~Model();
 
-	void		DrawModel(void);
+	void		Draw() override;
+
+	float		GetRadius(void);
+	Vector3		GetCenter(void);
+
+private:
+
 	void		DrawObject(bool transparency = false);
 	void		DrawFace(Face& face);
 
@@ -106,11 +118,7 @@ public:
 	bool		LoadObject(string fileName);
 	void		LoadMaterials(string fileName);
 
-	float		GetRadius(void);
-	Vector3		GetCenter(void);
 	string		GetPath();
-
-private:
 
 	vector<GroupObject*>	objects;
 

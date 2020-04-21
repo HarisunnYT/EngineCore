@@ -11,14 +11,6 @@ Entity::Entity()
 	OnEnable();
 }
 
-Entity::~Entity()
-{
-	//for (auto& c : components)
-	//{
-	//	delete *c;
-	//}
-}
-
 void Entity::Update()
 {
 	for (auto& c : components)

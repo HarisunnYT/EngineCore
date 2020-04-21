@@ -20,6 +20,7 @@ class ECS
 public:
 
 	ECS();
+	~ECS();
 
 	void Update();
 	void Draw();
@@ -30,7 +31,6 @@ public:
 	void SubscribeEntityStateChange(Entity* entity, bool state);
 
 	Entity& AddEntity();
-	Entity& AddEntity(Entity* entity);
 	Entity& AddEntity(const char* path);
 
 	std::list<Entity*> entities;

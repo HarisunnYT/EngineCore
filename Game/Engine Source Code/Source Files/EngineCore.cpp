@@ -43,25 +43,27 @@ void EngineCore::Init(const char* title, int xpos, int ypos, bool fullscreen)
 	mainContext = SDL_GL_CreateContext(window);
 	Renderer = SDL_CreateRenderer(window, -1, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45.0f, (GLfloat)screenSize.x / (GLfloat)screenSize.y, 0.1f, 500.0f);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	EstablishProjectionMatrix();
 
-	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_DEPTH_TEST);
+	glShadeModel(GL_SMOOTH);
+
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+	glEnable(GL_PERSPECTIVE_CORRECTION_HINT);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_TEXTURE_2D);
 
 	isRunning = true;
 
 	Collision::Init();
 	Light::StaticInitialise();
 
-	camera = new Camera();
 	Ecs = new ECS();
-	game = new Game();
 
-	Ecs->AddEntity((Entity*)camera);
+	camera = &Ecs->AddEntity().AddComponent<Camera>();
+
+	game = new Game();
 }
 
 void EngineCore::HandleEvents()
@@ -99,22 +101,22 @@ void EngineCore::Update()
 void EngineCore::Render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//SDL_RenderClear(Renderer);
 
-	glViewport(0, 0, (GLint)EngineCore::screenSize.x, (GLint)EngineCore::screenSize.y);
-	glMatrixMode(GL_PROJECTION);
+	EstablishProjectionMatrix();
+
+	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	gluPerspective(45.0f, (GLfloat)EngineCore::screenSize.x / (GLfloat)EngineCore::screenSize.y, 0.1f, 200.0f);
+	//camera->ViewUpdate();
 
-	glEnable(GL_BLEND);
+	glEnable(GL_LIGHTING);
+	glDisable(GL_BLEND);
 
 	game->Draw();
 	Ecs->Draw();
 	Ecs->DebugDraw();
 	Collision::DebugDraw();
 
-	//SDL_RenderPresent(Renderer);
 	SDL_GL_SwapWindow(window);
 }
 
@@ -132,4 +134,24 @@ void EngineCore::Clean()
 bool EngineCore::Running()
 {
 	return isRunning;
+}
+
+void EngineCore::EstablishProjectionMatrix()
+{
+	glViewport(0, 0, (GLsizei)screenSize.x, (GLsizei)screenSize.y);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	gluPerspective(45.0f, (GLdouble)screenSize.x / (GLdouble)screenSize.y, nearClippingPlane, farClippingPlane);
+}
+
+void EngineCore::SetOrthographic()
+{
+	glViewport(0, 0, (GLsizei)screenSize.x, (GLsizei)screenSize.y);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	glOrtho(0, (GLfloat)screenSize.x, (GLfloat)screenSize.y, 0, nearClippingPlane, farClippingPlane);
 }
