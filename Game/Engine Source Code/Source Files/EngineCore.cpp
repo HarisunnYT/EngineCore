@@ -107,7 +107,7 @@ void EngineCore::Render()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//camera->ViewUpdate();
+	camera->ViewUpdate();
 
 	glEnable(GL_LIGHTING);
 	glDisable(GL_BLEND);
@@ -122,7 +122,6 @@ void EngineCore::Render()
 
 void EngineCore::Clean()
 {
-	delete camera;
 	delete Ecs;
 	delete game;
 
