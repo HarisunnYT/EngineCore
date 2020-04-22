@@ -13,6 +13,7 @@
 
 #include "Cube.h"
 #include "Model.h"
+#include "FBXMesh.h"
 
 #include "3rdPartyLibs/Includes/GLM/gtx/transform.hpp"
 
@@ -21,14 +22,15 @@
 Entity* light;
 Entity* model;
 
+
 Game::Game()
 {
 	EngineCore::isDebug = false;
 	Collision::drawGrid = false;
 
-	model = &EngineCore::Ecs->AddEntity();
-	model->AddComponent<MeshRenderer>(new Model("Assets/Titan.obj"));
-	model->transform->scale = Vector3::One() * 0.01f;
+	//model = &EngineCore::Ecs->AddEntity();
+	//model->AddComponent<MeshRenderer>(new Model("Assets/Titan.obj"));
+	//model->transform->scale = Vector3::One() * 0.01f;
 
 	light = &EngineCore::Ecs->AddEntity();
 	light->AddComponent<Light>(LIGHT_TYPE::LIGHT_DIRECTIONAL);

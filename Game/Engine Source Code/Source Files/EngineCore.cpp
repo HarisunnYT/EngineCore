@@ -142,7 +142,7 @@ void EngineCore::EstablishProjectionMatrix()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(45.0f, (GLdouble)screenSize.x / (GLdouble)screenSize.y, nearClippingPlane, farClippingPlane);
+	//gluPerspective(45.0f, (GLdouble)screenSize.x / (GLdouble)screenSize.y, nearClippingPlane, farClippingPlane);
 }
 
 void EngineCore::SetOrthographic()

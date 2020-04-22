@@ -29,7 +29,7 @@ int main(int agrc, char* argv[])
 
 		EngineCore::deltaTime = (float)delta / 1000;
 
-		delta = min(delta, MAX_FRAME_DELTA);
+		delta = delta > MAX_FRAME_DELTA ? MAX_FRAME_DELTA : delta;
 
 		engineCore->HandleEvents();
 

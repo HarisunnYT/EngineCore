@@ -60,7 +60,7 @@ void Camera::ViewUpdate()
 	Vector3 cameraPos = EngineCore::camera->entity->transform->position;
 	Vector3 euler = EngineCore::camera->entity->transform->eulerRotation.Normalised();
 
-	gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraPos.x + euler.x, cameraPos.y + euler.y, cameraPos.z + euler.z, 0, 1, 0);
+	//gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraPos.x + euler.x, cameraPos.y + euler.y, cameraPos.z + euler.z, 0, 1, 0);
 }
 
 bool Camera::InsideCameraView(SDL_Rect* rect)

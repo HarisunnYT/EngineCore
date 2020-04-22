@@ -52,6 +52,12 @@
     <Filter Include="Source Files\Engine\Math">
       <UniqueIdentifier>{79c189b7-fb1b-4b70-89ae-c3114ec4a81d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Rendering\FBX">
+      <UniqueIdentifier>{71be62c7-f327-4e91-88f8-7c0b965876bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Rendering\FBX">
+      <UniqueIdentifier>{44df8ce5-15e5-48b5-a949-4181853ca66f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine Source Code\Source Files\Collision.cpp">
@@ -149,6 +155,18 @@
     </ClCompile>
     <ClCompile Include="Engine Source Code\Source Files\Plane.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\Common.cxx">
+      <Filter>Source Files\Engine\Rendering\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\GetPosition.cxx">
+      <Filter>Source Files\Engine\Rendering\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\FBXMesh.cpp">
+      <Filter>Source Files\Engine\Rendering\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine Source Code\Source Files\FBXLoader.cpp">
+      <Filter>Source Files\Engine\Rendering\FBX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +271,18 @@
     </ClInclude>
     <ClInclude Include="Engine Source Code\Header Files\Plane.h">
       <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\Common.h">
+      <Filter>Header Files\Engine\Rendering\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\GetPosition.h">
+      <Filter>Header Files\Engine\Rendering\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\FBXMesh.h">
+      <Filter>Header Files\Engine\Rendering\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine Source Code\Header Files\FBXLoader.h">
+      <Filter>Header Files\Engine\Rendering\FBX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

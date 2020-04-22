@@ -108,19 +108,19 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\3rdPartyLibs\Include;$(SolutionDir)\Game;$(SolutionDir)\Engine Source Code\Header Files;$(SolutionDir)\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Repos\EngineCore\Game\3rdPartyLibs\Includes\FBX;$(ProjectDir)\3rdPartyLibs\Include;$(SolutionDir)\Game;$(SolutionDir)\Engine Source Code\Header Files;$(SolutionDir)\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>Default</LanguageStandard>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FBXSDK_SHARED;K_NODLL;K_FBXSDK;K_PLUGIN;WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjectDir)\3rdPartyLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Repos\EngineCore\Game\3rdPartyLibs\Debug Libs;$(ProjectDir)\3rdPartyLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib-md.lib;libfbxsdk.lib;d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -149,8 +149,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\3rdPartyLibs\Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Engine Source Code\Header Files;$(SolutionDir)\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Repos\EngineCore\Game\3rdPartyLibs\Includes\FBX;$(ProjectDir)\3rdPartyLibs\Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Engine Source Code\Header Files;$(SolutionDir)\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FBXSDK_SHARED;K_NODLL;K_FBXSDK;K_PLUGIN;WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -161,8 +161,8 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(ProjectDir)\3rdPartyLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Repos\EngineCore\Game\3rdPartyLibs\Debug Libs;$(ProjectDir)\3rdPartyLibs\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib-md.lib;libfbxsdk.lib;d3d11.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AssemblyDebug>true</AssemblyDebug>
     </Link>
   </ItemDefinitionGroup>
@@ -173,12 +173,16 @@
     <ClCompile Include="Engine Source Code\Source Files\Camera.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Collider.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Collision.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\Common.cxx" />
     <ClCompile Include="Engine Source Code\Source Files\Cube.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Drawable.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\ECS.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\EngineCore.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Entity.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\FBXLoader.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\FBXMesh.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Game.cpp" />
+    <ClCompile Include="Engine Source Code\Source Files\GetPosition.cxx" />
     <ClCompile Include="Engine Source Code\Source Files\Hit.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\InputSystem.cpp" />
     <ClCompile Include="Engine Source Code\Source Files\Light.cpp" />
@@ -207,6 +211,7 @@
     <ClInclude Include="Engine Source Code\Header Files\Camera.h" />
     <ClInclude Include="Engine Source Code\Header Files\Collider.h" />
     <ClInclude Include="Engine Source Code\Header Files\Collision.h" />
+    <ClInclude Include="Engine Source Code\Header Files\Common.h" />
     <ClInclude Include="Engine Source Code\Header Files\Component.h" />
     <ClInclude Include="Engine Source Code\Header Files\Components.h" />
     <ClInclude Include="Engine Source Code\Header Files\Cube.h" />
@@ -214,7 +219,10 @@
     <ClInclude Include="Engine Source Code\Header Files\ECS.h" />
     <ClInclude Include="Engine Source Code\Header Files\EngineCore.h" />
     <ClInclude Include="Engine Source Code\Header Files\Entity.h" />
+    <ClInclude Include="Engine Source Code\Header Files\FBXLoader.h" />
+    <ClInclude Include="Engine Source Code\Header Files\FBXMesh.h" />
     <ClInclude Include="Engine Source Code\Header Files\Game.h" />
+    <ClInclude Include="Engine Source Code\Header Files\GetPosition.h" />
     <ClInclude Include="Engine Source Code\Header Files\Hit.h" />
     <ClInclude Include="Engine Source Code\Header Files\InputSystem.h" />
     <ClInclude Include="Engine Source Code\Header Files\Light.h" />
