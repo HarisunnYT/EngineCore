@@ -50,6 +50,19 @@ private:
 							   fbxsdk::FbxTime& time,
 							   fbxsdk::FbxPose* pose);
 
+	void ComputeClusterDeformation(FbxAMatrix& pGlobalPosition,
+								   FbxMesh* pMesh,
+								   FbxCluster* pCluster,
+								   FbxAMatrix& pVertexTransformMatrix,
+								   FbxTime pTime,
+								   FbxPose* pPose);
+
+	void MatrixScale(FbxAMatrix& pMatrix, double pValue);
+
+	void MatrixAdd(FbxAMatrix& pDstMatrix, FbxAMatrix& pSrcMatrix);
+
+	void MatrixAddToDiagonal(FbxAMatrix& pMatrix, double pValue);
+
 	void LoadSupportedTextures(fbxsdk::FbxScene* scene);
 	void LoadSupportedTexturesRecursive(fbxsdk::FbxNode *node);
 
