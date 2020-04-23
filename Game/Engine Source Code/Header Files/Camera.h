@@ -37,8 +37,13 @@ private:
 	Vector2			inputBottomRight;
 
 	Vector2 previousMouseHeldPosition;
+
+	float mouseSensitivity = 0.1f;
 	float movementSpeed = 0.1f;
 	float rotationDamper = 500.0f;
+
+	float yaw;
+	float pitch;
 
 };
 

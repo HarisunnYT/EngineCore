@@ -15,26 +15,36 @@ void Camera::ViewUpdate()
 {
 	if (InputSystem::MouseHeld(SDL_BUTTON_RIGHT))
 	{
-		Vector3 cameraDirection = EngineCore::camera->entity->transform->eulerRotation;
-		Vector2 mouseDelta = InputSystem::MousePosition - previousMouseHeldPosition;
+		Vector2 mousePosition = InputSystem::MousePosition;
 
-		Vector3 cameraRight = Vector3::Cross(Vector3::Up(), cameraDirection);
-		Vector3 cameraUp = Vector3::Cross(cameraDirection, cameraRight);
+		float xoffset = (mousePosition.x - previousMouseHeldPosition.x) * mouseSensitivity;
+		float yoffset = ( previousMouseHeldPosition.y - mousePosition.y) * mouseSensitivity;
 
-		float camX = sin((SDL_GetTicks() / 1000) * 10.0f);
-		float camZ = cos((SDL_GetTicks() / 1000) * 10.0f);
+		yaw += xoffset;
+		pitch += yoffset;
 
-		Matrix4x4 view = Matrix4x4::LookAt(Vector3(camX, 0.0f, camZ), Vector3(0, 0, 0), Vector3(0, 1, 0));
-		EngineCore::camera->entity->transform->eulerRotation = Vector3(view);
+		if (pitch > 89.0f)
+			pitch = 89.0f;
+		if (pitch < -89.0f)
+			pitch = -89.0f;
+
+		Vector3 direction;
+		direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+		direction.y = sin(glm::radians(pitch));
+		direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+
+		direction.Normalise();
+
+		EngineCore::camera->entity->transform->eulerRotation = direction;
 	}
 
 	if (InputSystem::KeyHeld(SDL_SCANCODE_W))
 	{
-		EngineCore::camera->entity->transform->position.z -= movementSpeed; //+= EngineCore::camera->entity->transform->eulerRotation.Normalised() * movementSpeed;
+		EngineCore::camera->entity->transform->position += EngineCore::camera->entity->transform->eulerRotation.Normalised() * movementSpeed;
 	}
 	if (InputSystem::KeyHeld(SDL_SCANCODE_S))
 	{
-		EngineCore::camera->entity->transform->position.z += movementSpeed; //+= EngineCore::camera->entity->transform->eulerRotation.Normalised() * -movementSpeed;
+		EngineCore::camera->entity->transform->position += EngineCore::camera->entity->transform->eulerRotation.Normalised() * -movementSpeed;
 	}
 	if (InputSystem::KeyHeld(SDL_SCANCODE_D))
 	{
@@ -52,8 +62,8 @@ void Camera::ViewUpdate()
 	Vector3 cameraPos = EngineCore::camera->entity->transform->position;
 	Vector3 euler = EngineCore::camera->entity->transform->eulerRotation.Normalised();
 
-	//gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraPos.x + euler.x, cameraPos.y + euler.y, cameraPos.z + euler.z, 0, 1, 0);
-	gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraPos.x, cameraPos.y, cameraPos.z - 1, 0, 1, 0);
+	gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraPos.x + euler.x, cameraPos.y + euler.y, cameraPos.z + euler.z, 0, 1, 0);
+	//gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, cameraPos.x, cameraPos.y, cameraPos.z - 1, 0, 1, 0);
 }
 
 void Camera::Update()

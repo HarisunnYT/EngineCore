@@ -9,8 +9,8 @@ Vector3::Vector3(float X, float Y, float Z) : Point(X, Y, Z)
 Vector3::Vector3(Matrix4x4 mat)
 {
 	x = mat.matrix[0][0];
-	y = mat.matrix[1][1];
-	z = mat.matrix[2][2];
+	y = mat.matrix[1][0];
+	z = mat.matrix[2][0];
 }
 
 Vector3& Vector3::Equals(const Vector3& p)

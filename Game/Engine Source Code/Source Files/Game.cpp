@@ -21,7 +21,7 @@
 #include <iostream>
 
 Entity* light;
-//Entity* cube;
+Entity* c;
 
 FBXLoader* loader = nullptr;
 
@@ -33,7 +33,8 @@ Game::Game()
 	//loader = new FBXLoader("Assets/Crow_Run.fbx");
 
 	Entity* model = &EngineCore::Ecs->AddEntity();
-	model->AddComponent<MeshRenderer>(new Model("Assets/Handgun_obj.obj"));
+	model->AddComponent<MeshRenderer>(new Model("Assets/Titan.obj"));
+	model->transform->scale = Vector3::One() * 0.001f;
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -41,6 +42,8 @@ Game::Game()
 		cube->AddComponent<MeshRenderer>(new Cube());
 		cube->transform->position.z = -25;
 		cube->transform->position.x = i * 3;
+
+		c = cube;
 	}
 
 	light = &EngineCore::Ecs->AddEntity();
@@ -48,7 +51,7 @@ Game::Game()
 	light->GetComponent<Light>().SetDiffuse(2.0f, 2.0f, 2.0f, 1.0f);
 	light->transform->position = Vector3(0.0f, 30.0f, 0.0f);
 
-	EngineCore::camera->entity->transform->eulerRotation = Vector3(0, 0, 1);
+	EngineCore::camera->entity->transform->eulerRotation = Vector3(1, 0, 0);
 }
 
 Game::~Game()
@@ -57,7 +60,7 @@ Game::~Game()
 
 void Game::Update()
 {
-	//cube->transform->position.x += 0.01f;
+	c->transform->position.x += 0.01f;
 	//EngineCore::camera->entity->transform->position.x += 0.01f;
 }
 

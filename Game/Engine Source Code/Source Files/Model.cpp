@@ -29,18 +29,6 @@ void Model::Draw()
 	if (!objectLoaded)
 		return;
 
-	Vector3 camPos = EngineCore::camera->entity->transform->position;
-	Vector3 pos = meshRenderer->entity->transform->position;
-	glTranslatef(pos.x + camPos.x, pos.y + camPos.y, pos.z + camPos.z);
-
-	Vector3 scale = meshRenderer->entity->transform->scale;
-	glScalef(scale.x, scale.y, scale.z);
-
-	Vector3 eulerRotation = meshRenderer->entity->transform->eulerRotation;
-	glRotatef(eulerRotation.x, 1, 0, 0);
-	glRotatef(eulerRotation.y, 0, 1, 0);
-	glRotatef(eulerRotation.z, 0, 0, 1);
-
 	if (displayList != 0)
 	{
 		glCallList(displayList);
@@ -107,6 +95,17 @@ void Model::DrawFace(Face& face)
 {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+
+	Vector3 pos = meshRenderer->entity->transform->position;
+	glTranslatef(pos.x, pos.y, pos.z);
+
+	Vector3 scale = meshRenderer->entity->transform->scale;
+	glScalef(scale.x, scale.y, scale.z);
+
+	Vector3 eulerRotation = meshRenderer->entity->transform->eulerRotation;
+	glRotatef(eulerRotation.x, 1, 0, 0);
+	glRotatef(eulerRotation.y, 0, 1, 0);
+	glRotatef(eulerRotation.z, 0, 0, 1);
 
 	if ((int)face.numVertices <= 3)
 		glBegin(GL_TRIANGLES);
