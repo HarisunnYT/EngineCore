@@ -1,7 +1,6 @@
 #ifndef ENGINECORE_H
 #define ENGINECORE_H
 
-//#include "3rdPartyLibs/Includes/GL/glew.h"
 #include "SDL.h"
 #include "SDL_opengl.h"
 #include "SDL_image.h"

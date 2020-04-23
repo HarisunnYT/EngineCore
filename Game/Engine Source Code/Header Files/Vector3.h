@@ -51,10 +51,12 @@ public:
 	static Vector3 Right();
 
 	Vector3 Normalised();
-	Vector3 Cross(const Vector3& vec);
+	static Vector3 Cross(const Vector3& vec1, const Vector3& vec2);
 
 	float Magnitude();
 	float Dot(Vector3& vec);
+
+	static float Dot(const Vector3& vec1, const Vector3& vec2);
 
 	std::string ToString();
 	static Vector3 FromString(std::string str);

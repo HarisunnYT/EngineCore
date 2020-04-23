@@ -27,6 +27,7 @@ public:
 	Matrix4x4& operator-=(const Matrix4x4& mat);
 
 	static Matrix4x4 Rotate(float angle, Vector3 direction);
+	static Matrix4x4 LookAt(const Vector3& eye, const Vector3& center, const Vector3& up);
 	static Matrix4x4 One();
 
 	std::string ToString();

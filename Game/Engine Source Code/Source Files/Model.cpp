@@ -1,4 +1,5 @@
 #include "..\Header Files\Model.h"
+#include "Camera.h"
 
 #include <fstream>
 #include <iostream>
@@ -28,8 +29,9 @@ void Model::Draw()
 	if (!objectLoaded)
 		return;
 
+	Vector3 camPos = EngineCore::camera->entity->transform->position;
 	Vector3 pos = meshRenderer->entity->transform->position;
-	glTranslatef(pos.x, pos.y, pos.z);
+	glTranslatef(pos.x + camPos.x, pos.y + camPos.y, pos.z + camPos.z);
 
 	Vector3 scale = meshRenderer->entity->transform->scale;
 	glScalef(scale.x, scale.y, scale.z);
@@ -103,6 +105,9 @@ void Model::DrawObject(bool transparency)
 
 void Model::DrawFace(Face& face)
 {
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
 	if ((int)face.numVertices <= 3)
 		glBegin(GL_TRIANGLES);
 	else
@@ -375,7 +380,7 @@ bool Model::LoadObject(string fn)
 			{
 				Vector3 vector1 = ((*newFace->verticies[0]) - (*newFace->verticies[1])).Normalised();
 				Vector3 vector2 = ((*newFace->verticies[0]) - (*newFace->verticies[2])).Normalised();
-				newFace->faceNormal = vector1.Cross(vector2);
+				newFace->faceNormal = Vector3::Cross(vector1, vector2);
 			}
 		}
 	}

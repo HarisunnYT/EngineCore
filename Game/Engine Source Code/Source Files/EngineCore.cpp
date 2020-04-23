@@ -1,3 +1,5 @@
+#include "3rdPartyLibs/Includes/GL/glew.h"
+
 #include "EngineCore.h"
 #include "Game.h"
 #include "TextureManager.h"
@@ -104,9 +106,6 @@ void EngineCore::Render()
 
 	EstablishProjectionMatrix();
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
 	camera->ViewUpdate();
 
 	glEnable(GL_LIGHTING);
@@ -139,12 +138,12 @@ void EngineCore::EstablishProjectionMatrix()
 {
 	glViewport(0, 0, (GLsizei)screenSize.x, (GLsizei)screenSize.y);
 
-	glClearColor(0.5f, 0.5f, 0.5f, 1);
+	glClearColor(0.3f, 0.3f, 0.7f, 1);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	//gluPerspective(45.0f, (GLdouble)screenSize.x / (GLdouble)screenSize.y, nearClippingPlane, farClippingPlane);
+	gluPerspective(45.0f, (GLdouble)screenSize.x / (GLdouble)screenSize.y, nearClippingPlane, farClippingPlane);
 }
 
 void EngineCore::SetOrthographic()

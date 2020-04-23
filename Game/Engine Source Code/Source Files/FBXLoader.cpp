@@ -217,17 +217,17 @@ void FBXLoader::LoadContent(fbxsdk::FbxScene* scene, fbxsdk::FbxNode* node, vect
 				{
 					FbxSurfaceLambert* lambert = static_cast<FbxSurfaceLambert*>(lMaterialLayer->mDirectArray->GetAt(0));
 
-					material->Kd[0] = lambert->Diffuse.Get()[0];
-					material->Kd[1] = lambert->Diffuse.Get()[1];
-					material->Kd[2] = lambert->Diffuse.Get()[2];
+					material->Kd[0] = (float)lambert->Diffuse.Get()[0];
+					material->Kd[1] = (float)lambert->Diffuse.Get()[1];
+					material->Kd[2] = (float)lambert->Diffuse.Get()[2];
 
 					//material->Ks[0] = lambert->spe
 					//material->Ks[1] = specularAnimCurveNode->GetCurve(1, 0)->GetValue();
 					//material->Ks[2] = specularAnimCurveNode->GetCurve(2, 0)->GetValue();
 
-					material->Ka[0] = lambert->Ambient.Get()[0];
-					material->Ka[1] = lambert->Ambient.Get()[1];
-					material->Ka[2] = lambert->Ambient.Get()[2];
+					material->Ka[0] = (float)lambert->Ambient.Get()[0];
+					material->Ka[1] = (float)lambert->Ambient.Get()[1];
+					material->Ka[2] = (float)lambert->Ambient.Get()[2];
 				}
 
 				if (lTextureLayer != nullptr && lTextureLayer->mDirectArray->GetCount() > 0)

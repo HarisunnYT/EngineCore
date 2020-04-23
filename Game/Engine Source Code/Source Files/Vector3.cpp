@@ -203,11 +203,11 @@ Vector3 Vector3::Normalised()
 	return vec;
 }
 
-Vector3 Vector3::Cross(const Vector3& vec)
+Vector3 Vector3::Cross(const Vector3& vec1, const Vector3& vec2)
 {
-	return Vector3(y * vec.z - z * vec.y,
-				   z * vec.x - x * vec.z,
-		           x * vec.y - y * vec.x);
+	return Vector3(vec1.y * vec2.z - vec1.z * vec2.y,
+				   vec1.z * vec2.x - vec1.x * vec2.z,
+				   vec1.x * vec2.y - vec1.y * vec2.x);
 }
 
 float Vector3::Magnitude()
@@ -218,6 +218,11 @@ float Vector3::Magnitude()
 float Vector3::Dot(Vector3& vec)
 {
 	return (x * vec.x + y * vec.y + z * vec.z);
+}
+
+float Vector3::Dot(const Vector3& vec1, const Vector3& vec2)
+{
+	return (vec1.x * vec2.x + vec1.y * vec2.y + vec1.z * vec2.z);
 }
 
 std::string Vector3::ToString()

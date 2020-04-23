@@ -16,7 +16,7 @@ public:
 	Drawable() = default;
 
 	virtual void Load() {}
-	virtual void Draw() = 0;
+	virtual void Draw();
 
 protected:
 

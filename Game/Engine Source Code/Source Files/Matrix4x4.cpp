@@ -186,6 +186,29 @@ Matrix4x4 Matrix4x4::Rotate(float angle, Vector3 direction)
 	return rot;
 }
 
+Matrix4x4 Matrix4x4::LookAt(const Vector3& eye, const Vector3& center, const Vector3& up)
+{
+	const Vector3 f = ((Vector3)center - eye).Normalised();
+	const Vector3 s = (Vector3::Cross(f, up)).Normalised();
+	const Vector3 u = Vector3::Cross(s, f);
+
+	Matrix4x4 result = Matrix4x4::One();
+	result.matrix[0][0] = s.x;
+	result.matrix[1][0] = s.y;
+	result.matrix[2][0] = s.z;
+	result.matrix[0][1] = u.x;
+	result.matrix[1][1] = u.y;
+	result.matrix[2][1] = u.z;
+	result.matrix[0][2] = -f.x;
+	result.matrix[1][2] = -f.y;
+	result.matrix[2][2] = -f.z;
+	result.matrix[3][0] = -Vector3::Dot(s, eye);
+	result.matrix[3][1] = -Vector3::Dot(u, eye);
+	result.matrix[3][2] = Vector3::Dot(f, eye);
+
+	return result;
+}
+
 Matrix4x4 Matrix4x4::One()
 {
 	Matrix4x4 mat = Matrix4x4();
