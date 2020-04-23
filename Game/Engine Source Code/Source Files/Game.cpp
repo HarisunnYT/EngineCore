@@ -14,6 +14,7 @@
 #include "Cube.h"
 #include "Model.h"
 #include "FBXMesh.h"
+#include "FBXLoader.h"
 
 #include "3rdPartyLibs/Includes/GLM/gtx/transform.hpp"
 
@@ -22,11 +23,14 @@
 Entity* light;
 Entity* model;
 
+FBXLoader* loader = nullptr;
 
 Game::Game()
 {
 	EngineCore::isDebug = false;
 	Collision::drawGrid = false;
+
+	//loader = new FBXLoader("Assets/Crow_Run.fbx");
 
 	//model = &EngineCore::Ecs->AddEntity();
 	//model->AddComponent<MeshRenderer>(new Model("Assets/Titan.obj"));
@@ -54,6 +58,7 @@ void Game::LateUpdate()
 
 void Game::Draw()
 {
+	//loader->DrawModel(0);
 }
 
 void Game::Physics()

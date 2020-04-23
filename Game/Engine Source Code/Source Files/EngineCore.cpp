@@ -139,6 +139,8 @@ void EngineCore::EstablishProjectionMatrix()
 {
 	glViewport(0, 0, (GLsizei)screenSize.x, (GLsizei)screenSize.y);
 
+	glClearColor(0.5f, 0.5f, 0.5f, 1);
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 

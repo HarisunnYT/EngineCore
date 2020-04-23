@@ -117,7 +117,14 @@ bool FBXLoader::LoadFBX(std::string fileName)
 		return false;
 	}
 
-	scene = FbxScene::Create(sdkManager, fileName.data());
+	FbxImporter* importer = FbxImporter::Create(sdkManager, " ");
+	importer->Initialize(fileName.c_str(), -1, sdkManager->GetIOSettings());
+
+	scene = FbxScene::Create(sdkManager, "myScene");
+
+	importer->Import(scene);
+	importer->Destroy();
+
 	FbxNode* node = scene->GetRootNode();
 
 	LoadSupportedTextures(scene);
@@ -132,7 +139,7 @@ bool FBXLoader::LoadFBX(std::string fileName)
 
 	objectLoaded = true;
 
-	delete &sdkManager;
+	sdkManager->Destroy();
 
 	return true;
 }
@@ -202,39 +209,30 @@ void FBXLoader::LoadContent(fbxsdk::FbxScene* scene, fbxsdk::FbxNode* node, vect
 				FbxTexture* lTexture = nullptr;
 
 				FbxLayerElementMaterial* lMaterialLayer = pMesh->GetLayer(0)->GetMaterials();
-				FbxLayerElementTexture* lTextureLayer = pMesh->GetLayer(0)->GetTextures(FbxLayerElement::EType::eUnknown);
+				FbxLayerElementTexture* lTextureLayer = pMesh->GetLayer(0)->GetTextures(FbxLayerElement::EType::eTextureDiffuse);
 				
 				material = new MaterialFBX();
 				
 				if (lMaterialLayer != nullptr && lMaterialLayer->mDirectArray->GetCount() > 0)
 				{
-					lMaterial = lMaterialLayer->mDirectArray->GetAt(1);
+					FbxSurfaceLambert* lambert = static_cast<FbxSurfaceLambert*>(lMaterialLayer->mDirectArray->GetAt(0));
 
-					FbxProperty diffuse = lMaterial->FindProperty(FbxSurfaceMaterial::sDiffuse);
-					FbxAnimCurveNode* diffuseAnimCurveNode = diffuse.GetCurveNode();
+					material->Kd[0] = lambert->Diffuse.Get()[0];
+					material->Kd[1] = lambert->Diffuse.Get()[1];
+					material->Kd[2] = lambert->Diffuse.Get()[2];
 
-					material->Kd[0] = diffuseAnimCurveNode->GetCurve(0, 0)->GetValue();
-					material->Kd[1] = diffuseAnimCurveNode->GetCurve(1, 0)->GetValue();
-					material->Kd[2] = diffuseAnimCurveNode->GetCurve(2, 0)->GetValue();
+					//material->Ks[0] = lambert->spe
+					//material->Ks[1] = specularAnimCurveNode->GetCurve(1, 0)->GetValue();
+					//material->Ks[2] = specularAnimCurveNode->GetCurve(2, 0)->GetValue();
 
-					FbxProperty specular = lMaterial->FindProperty(FbxSurfaceMaterial::sSpecular);
-					FbxAnimCurveNode* specularAnimCurveNode = specular.GetCurveNode();
-
-					material->Ks[0] = specularAnimCurveNode->GetCurve(0, 0)->GetValue();
-					material->Ks[1] = specularAnimCurveNode->GetCurve(1, 0)->GetValue();
-					material->Ks[2] = specularAnimCurveNode->GetCurve(2, 0)->GetValue();
-
-					FbxProperty ambient = lMaterial->FindProperty(FbxSurfaceMaterial::sAmbient);
-					FbxAnimCurveNode* ambientAnimCurveNode = ambient.GetCurveNode();
-
-					material->Ka[0] = ambientAnimCurveNode->GetCurve(0, 0)->GetValue();
-					material->Ka[1] = ambientAnimCurveNode->GetCurve(1, 0)->GetValue();
-					material->Ka[2] = ambientAnimCurveNode->GetCurve(2, 0)->GetValue();
+					material->Ka[0] = lambert->Ambient.Get()[0];
+					material->Ka[1] = lambert->Ambient.Get()[1];
+					material->Ka[2] = lambert->Ambient.Get()[2];
 				}
 
 				if (lTextureLayer != nullptr && lTextureLayer->mDirectArray->GetCount() > 0)
 				{
-					lTexture = lTextureLayer->mDirectArray->GetAt(1);
+					lTexture = lTextureLayer->mDirectArray->GetAt(0);
 
 					for (int i = 0; i < (int)Texture::textures.size(); i++)
 					{

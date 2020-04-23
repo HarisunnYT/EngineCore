@@ -115,7 +115,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>Default</LanguageStandard>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <PreprocessorDefinitions>FBXSDK_SHARED;K_NODLL;K_FBXSDK;K_PLUGIN;WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;FBXSDK_SHARED;K_NODLL;K_FBXSDK;K_PLUGIN;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,7 +150,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Repos\EngineCore\Game\3rdPartyLibs\Includes\FBX;$(ProjectDir)\3rdPartyLibs\Include;$(SolutionDir)\Game;$(SolutionDir)\Game\Engine Source Code\Header Files;$(SolutionDir)\Game\Game Source Code\Header Files;C:\dev\SDL2_image-2.0.1\include;C:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FBXSDK_SHARED;K_NODLL;K_FBXSDK;K_PLUGIN;WIN32;_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;FBXSDK_SHARED;K_NODLL;K_FBXSDK;K_PLUGIN;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
